@@ -58,6 +58,8 @@ cd web && npm run typecheck && npm run build
 
 生成数据属于同一模板家族，不用于独立评测，不能自动当作人工金标准。详见 [标注规范](docs/ANNOTATION.md)。正式训练命令为 `python scripts/train.py --gpu GPU-完整UUID`，缺少审核发布清单或未达到训练样本门槛时拒绝执行。
 
+正式训练还需在单独训练环境安装 LLaMA-Factory 与相应量化依赖，并先停止本项目推理服务，使训练与推理错峰。当前交付没有执行这一步，也没有正式 Adapter。
+
 ## 其他部署
 
 Compose 文件提供 PostgreSQL 与应用部署入口；当前主机未安装 Docker，尚未验证容器部署。原型工作流 checkpoint 使用本地 SQLite；单进程后端将业务变更串行化。迁移脚本与现有自动初始化互斥：新库先执行 Alembic，再启动应用；已有原型库使用 `alembic stamp 0001` 前必须先核对表结构并备份。

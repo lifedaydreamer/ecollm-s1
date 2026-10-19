@@ -9,6 +9,7 @@ jobs:
         with: {python-version: '3.12'}
       - run: pip install -r requirements.lock && pip install --no-deps -e .
       - run: pytest -q
+      - run: python scripts/build_preview.py --check
   frontend:
     runs-on: ubuntu-latest
     steps:
@@ -19,3 +20,23 @@ jobs:
         working-directory: web
       - run: npm run build
         working-directory: web
+  portable-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build and start the CPU demo exactly as documented
+        run: python scripts/demo.py start
+      - name: Exercise the real web proxy and approval workflow
+        run: |
+          set -a
+          . ./.env
+          set +a
+          python scripts/smoke_demo.py
+      - name: Logs on failure
+        if: failure()
+        run: python scripts/demo.py logs
+      - name: Stop this demo
+        if: always()
+        run: python scripts/demo.py stop

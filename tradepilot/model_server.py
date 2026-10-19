@@ -21,7 +21,10 @@ def app_factory():
         from transformers import AutoTokenizer, AutoModelForCausalLM
         if not os.getenv("CUDA_VISIBLE_DEVICES", "").startswith("GPU-"):
             raise RuntimeError("必须通过 gpu_guard.py 绑定单张 GPU UUID")
-        torch.cuda.set_per_process_memory_fraction(0.35, 0)
+        fraction = float(os.getenv("TRADEPILOT_MODEL_MEMORY_FRACTION", "0.35"))
+        if not 0 < fraction <= 0.9:
+            raise RuntimeError("Model memory fraction must be between 0 and 0.9")
+        torch.cuda.set_per_process_memory_fraction(fraction, 0)
         torch.set_num_threads(2)
         torch.manual_seed(42)
         state["tokenizer"] = AutoTokenizer.from_pretrained(model_path, local_files_only=True, trust_remote_code=False)

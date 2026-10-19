@@ -1,0 +1,45 @@
+# Used only when the user supplies local weights and an allocated GPU.
+services:
+  api:
+    environment:
+      TRADEPILOT_MODEL_URL: http://model:8102
+      TRADEPILOT_MODEL_NAME: Qwen3-4B-Instruct-2507-local
+    depends_on:
+      model: {condition: service_healthy}
+  model:
+    build:
+      context: .
+      dockerfile: Dockerfile.model
+    environment:
+      TRADEPILOT_MODEL_PATH: /models/base
+      TRADEPILOT_ADAPTER_PATH: ${ADAPTER_PATH:-}
+      TRADEPILOT_MODEL_TOKEN: ${TRADEPILOT_MODEL_TOKEN}
+      TRADEPILOT_MODEL_MEMORY_FRACTION: "0.85"
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    volumes:
+      - type: bind
+        source: ${MODEL_DIR:?supply --model-dir}
+        target: /models/base
+        read_only: true
+      - type: bind
+        source: ${ADAPTER_DIR:?supply --model-dir}
+        target: /models/adapter
+        read_only: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${GPU_UUID:?supply --gpu with an allocated device UUID}"]
+              capabilities: [gpu]
+    restart: "no"
+    command: [python, scripts/gpu_guard.py, --gpu, "${GPU_UUID}", --, python, -m, uvicorn, "tradepilot.model_server:app_factory", --factory, --host, "0.0.0.0", --port, "8102", --workers, "1"]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8102/health', timeout=5)"]
+      interval: 10s
+      timeout: 10s
+      retries: 36
+      start_period: 120s

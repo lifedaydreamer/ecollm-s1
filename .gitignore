@@ -18,3 +18,4 @@ checkpoints/
 *.sqlite*
 artifacts/
 data/generated/
+.download-venv/

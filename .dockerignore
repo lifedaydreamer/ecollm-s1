@@ -1,0 +1,15 @@
+.git
+.venv
+.model-venv
+.runtime
+.data
+__pycache__
+**/__pycache__
+**/._*
+web/node_modules
+web/.next
+checkpoints
+models
+artifacts
+data/generated
+.env

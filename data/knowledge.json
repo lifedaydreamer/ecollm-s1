@@ -1,5 +1,176 @@
 [
- {"id":"policy-explanation","type":"professional_explanation","title":"预付款与账期审查说明","text":"预付款 deposit 账期 payment days 应按企业审查策略判断。文件条件变化先记录差异，再核对例外接受理由。","source":"TradePilot 原创说明","license":"CC0-1.0","version":"1","applicability":"卖方商务复核；不提供法律结论"},
- {"id":"amount-explanation","type":"professional_explanation","title":"金额口径核对说明","text":"金额 total amount 单价 quantity price 运费 freight 保险 insurance 折扣 discount 的组成应分别核对。金额差异不自动构成卖方损失。","source":"TradePilot 原创说明","license":"CC0-1.0","version":"1","applicability":"普通货物贸易报价与合同"},
- {"id":"evidence-explanation","type":"professional_explanation","title":"规则适用前的信息检查","text":"规则 applicability 与 jurisdiction 需要交易主体、地区、约定版本和合同选择等背景。信息不足时应请求补充。","source":"TradePilot 原创说明","license":"CC0-1.0","version":"1","applicability":"信息完整性检查"}
+  {
+    "id": "policy-explanation",
+    "type": "professional_explanation",
+    "title": "预付款与账期审查说明",
+    "text": "预付款 deposit 账期 payment days 应按企业审查策略判断。文件条件变化先记录差异，再核对例外接受理由。",
+    "source": "TradePilot 原创说明",
+    "license": "CC0-1.0",
+    "version": "1",
+    "applicability": "卖方商务复核；不提供法律结论",
+    "topics": [
+      "deposit_percent",
+      "payment_days",
+      "payment_trigger"
+    ]
+  },
+  {
+    "id": "amount-explanation",
+    "type": "professional_explanation",
+    "title": "金额口径核对说明",
+    "text": "金额 total amount 单价 quantity price 运费 freight 保险 insurance 折扣 discount 的组成应分别核对。金额差异不自动构成卖方损失。",
+    "source": "TradePilot 原创说明",
+    "license": "CC0-1.0",
+    "version": "1",
+    "applicability": "普通货物贸易报价与合同",
+    "topics": [
+      "total",
+      "quantity",
+      "arithmetic",
+      "currency",
+      "unit_price"
+    ]
+  },
+  {
+    "id": "evidence-explanation",
+    "type": "professional_explanation",
+    "title": "规则适用前的信息检查",
+    "text": "规则 applicability 与 jurisdiction 需要交易主体、地区、约定版本和合同选择等背景。信息不足时应请求补充。",
+    "source": "TradePilot 原创说明",
+    "license": "CC0-1.0",
+    "version": "1",
+    "applicability": "信息完整性检查",
+    "topics": [
+      "seller",
+      "buyer",
+      "dispute",
+      "applicability"
+    ]
+  },
+  {
+    "id": "sku-explanation",
+    "type": "professional_explanation",
+    "title": "商品关联与计量单位",
+    "text": "SKU 只用于建立候选对应；重复 SKU、缺少单位、件与箱之间没有换算依据时，应人工确认。单价币种不同不能直接判断价格升降。",
+    "source": "TradePilot 原创复核清单",
+    "license": "CC0-1.0",
+    "version": "2",
+    "applicability": "普通货物、多商品业务；不自动执行单位换算",
+    "topics": [
+      "item",
+      "quantity",
+      "unit_price",
+      "currency"
+    ],
+    "authority": "project_checklist"
+  },
+  {
+    "id": "dates-explanation",
+    "type": "professional_explanation",
+    "title": "装运、到港与交付日期",
+    "text": "shipment 装运、arrival 到港和 delivery 交付是不同事件。日期不同先确认业务事件，再判断是否冲突；相对日期还需要触发条件。",
+    "source": "TradePilot 原创复核清单",
+    "license": "CC0-1.0",
+    "version": "2",
+    "applicability": "日期核对；不推定物流时间",
+    "topics": [
+      "shipment_date",
+      "delivery_date"
+    ],
+    "authority": "project_checklist"
+  },
+  {
+    "id": "inspection-explanation",
+    "type": "professional_explanation",
+    "title": "质量与验收复核",
+    "text": "inspection 验收应连同标准、检验主体、期限、通知方式及异议后果一起阅读。局部片段未检索到约定不能证明整份合同缺失。",
+    "source": "TradePilot 原创复核清单",
+    "license": "CC0-1.0",
+    "version": "2",
+    "applicability": "企业商务复核清单；期限合理性需专业人员判断",
+    "topics": [
+      "inspection"
+    ],
+    "authority": "project_checklist"
+  },
+  {
+    "id": "liability-explanation",
+    "type": "professional_explanation",
+    "title": "责任范围与例外",
+    "text": "liability 责任应联读上限、计算基数、免责和例外条款。修改建议需保留已确认事实；新增责任条件明确标记为待双方协商的提议。",
+    "source": "TradePilot 原创复核清单",
+    "license": "CC0-1.0",
+    "version": "2",
+    "applicability": "企业商务复核清单；不作效力判断",
+    "topics": [
+      "liability"
+    ],
+    "authority": "project_checklist"
+  },
+  {
+    "id": "revision-explanation",
+    "type": "professional_explanation",
+    "title": "版本接受与修订复查",
+    "text": "文件版本较新不等于双方已经接受。修订后未再检出某问题不能替代人工复核；原审批和处理意见不能自动转移到新版本。",
+    "source": "TradePilot 原创复核清单",
+    "license": "CC0-1.0",
+    "version": "2",
+    "applicability": "版本管理与审批",
+    "topics": [
+      "revision"
+    ],
+    "authority": "project_checklist"
+  },
+  {
+    "id": "cisg-scope-reference",
+    "type": "official_source_note",
+    "title": "CISG：先核实适用范围",
+    "text": "CISG 是国际货物销售合同的统一规则框架。引用前需确认营业地、合同内容及相关适用条件；本系统仅给出核查入口，未判定本案适用。",
+    "source": "https://uncitral.un.org/en/texts/salegoods/conventions/sale_of_goods/cisg",
+    "license": "原创摘要 CC0-1.0；官方原文权利归原发布者；未收录全文",
+    "version": "source-note-2026-10-19",
+    "applicability": "待人工核实：双方营业地、交易性质、合同约定及公约适用条件",
+    "topics": [
+      "seller",
+      "buyer",
+      "applicability",
+      "dispute"
+    ],
+    "authority": "official_reference",
+    "review_status": "source_verified_not_legal_adjudication"
+  },
+  {
+    "id": "cisg-status-reference",
+    "type": "official_source_note",
+    "title": "CISG：缔约状态与声明核查入口",
+    "text": "UNCITRAL 提供公约状态与声明的查询入口。具体国家在相关交易日期的状态与声明需要按官方记录核实；知识快照不替代时点核验。",
+    "source": "https://uncitral.un.org/en/texts/salegoods/conventions/sale_of_goods/cisg/status",
+    "license": "原创摘要 CC0-1.0；官方原文权利归原发布者；未收录全文",
+    "version": "source-note-2026-10-19",
+    "applicability": "需补充营业地国家和交易时间；状态未自动查询",
+    "topics": [
+      "seller",
+      "buyer",
+      "applicability"
+    ],
+    "authority": "official_reference",
+    "review_status": "source_verified_not_legal_adjudication"
+  },
+  {
+    "id": "incoterms-reference",
+    "type": "official_source_note",
+    "title": "Incoterms：版本、地点与交付责任",
+    "text": "ICC 的贸易术语解释货物交付中的任务、费用与风险分配。核对时同时记录三字母术语、指定地点和约定版本；具体义务仍需查阅获许可的正式规则。",
+    "source": "https://iccwbo.org/business-solutions/incoterms-rules/",
+    "license": "原创摘要 CC0-1.0；Incoterms® 为 ICC 商标，正式规则版权归 ICC；未收录规则正文",
+    "version": "source-note-2026-10-19",
+    "applicability": "待核实合同指定的术语、地点、版本及配套约定",
+    "topics": [
+      "incoterm",
+      "shipment_date",
+      "delivery_date"
+    ],
+    "authority": "official_reference",
+    "review_status": "source_verified_not_legal_adjudication"
+  }
 ]

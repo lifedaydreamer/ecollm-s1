@@ -14,7 +14,8 @@ from langgraph.types import Command
 from .db import database, initialize, CaseRow, RunRow, encode, case_dict, run_dict
 from .schema import NewCase, DecisionInput, Correction, ApprovalInput, Policy, now, uid
 from .parsers import parse_document
-from .engine import extract, normalize
+from .engine import extract, extract_items, normalize
+from .revisions import compare_runs
 from .workflow import make_graph
 from .reports import export
 
@@ -77,6 +78,9 @@ def create_app(db_url=None, data_dir=None, token=None):
                     row = s.get(RunRow, run_id)
                     payload = json.loads(row.payload)
                     payload.update({k: v for k, v in result.items() if not k.startswith("__")})
+                    previous = s.get(RunRow, payload.get("previous_run_id")) if payload.get("previous_run_id") else None
+                    payload["revision_delta"] = compare_runs(run_dict(previous) if previous else None,
+                                                            {"id": row.id, "revision": row.revision, **payload})
                     row.status = "approved" if result.get("approved") else "awaiting_review"
                     row.payload = encode(payload)
                     case, body = load_case(s, row.case_id)
@@ -153,6 +157,7 @@ def create_app(db_url=None, data_dir=None, token=None):
                    "version": 1 + sum(d["kind"] == kind for d in body["documents"]), "sha256": digest,
                    "blocks": blocks, "warnings": warnings, "created_at": now()}
             doc["facts"] = extract(doc)
+            doc["line_items"] = extract_items(doc)
             body["documents"].append(doc)
             if reference:
                 body["reference_ids"].append(doc_id)
@@ -223,8 +228,11 @@ def create_app(db_url=None, data_dir=None, token=None):
             knowledge_path = Path(__file__).resolve().parents[1] / "data/knowledge.json"
             knowledge_snapshot = hashlib.sha256(knowledge_path.read_bytes()).hexdigest() if knowledge_path.exists() else "none"
             snapshot = {"documents": selected, "reference_ids": body["reference_ids"], "policy": body["policy"], "knowledge_snapshot": knowledge_snapshot}
+            previous = s.scalar(select(RunRow).where(RunRow.case_id == case_id,
+                RunRow.status.in_(["awaiting_review", "approved"])).order_by(RunRow.created_at.desc()))
             run = RunRow(case_id=case_id, revision=case.revision, payload=encode({"input": snapshot, "decisions": {},
-                "model": os.getenv("TRADEPILOT_MODEL_NAME", "rules-only"), "prompt_version": "review-v1", "rule_version": "seller-v1", "knowledge_snapshot": knowledge_snapshot, "limits": "single-tenant-prototype"}))
+                "previous_run_id": previous.id if previous else None,
+                "model": os.getenv("TRADEPILOT_MODEL_NAME", "rules-only"), "prompt_version": "review-v1", "rule_version": "seller-rules-v2", "validator_version": "evidence-v2-bilateral", "knowledge_snapshot": knowledge_snapshot, "limits": "single-tenant-prototype"}))
             s.add(run)
             body["status"] = "running"
             case.payload = encode(body)

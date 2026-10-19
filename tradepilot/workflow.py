@@ -74,7 +74,7 @@ def make_graph(checkpointer):
 
     def report(state):
         from pathlib import Path
-        from .knowledge import KnowledgeStore
+        from .knowledge import KnowledgeStore, finding_topics
         path = Path(__file__).resolve().parents[1] / "data/knowledge.json"
         findings = json.loads(json.dumps(state["findings"]))
         if path.exists():
@@ -82,7 +82,7 @@ def make_graph(checkpointer):
             if state.get("knowledge_snapshot", store.snapshot) != store.snapshot:
                 return {"limitations": state["limitations"] + ["知识库在运行中发生变化，请重新审查。"]}
             for finding in findings:
-                finding["basis"] += store.search(finding["title"])
+                finding["basis"] += store.search(finding["title"], topics=finding_topics(finding))
         return {"findings": findings, "steps": state["steps"] + [{"node": "report", "at": now(), "status": "done"}]}
 
     def approval(state):

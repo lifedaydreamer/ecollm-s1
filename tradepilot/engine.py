@@ -20,6 +20,7 @@ PATTERNS = {
     "dispute": r"\bDispute resolution\s*:\s*(.+)",
 }
 NUMERIC = {"total", "quantity", "deposit_percent", "payment_days"}
+ITEM_PATTERN = re.compile(r"SKU:\s*([^|]+)\|\s*Quantity:\s*([\d,.]+)\s*\|\s*(?:Unit:\s*([^|]+)\|\s*)?Unit price:\s*([A-Z]{3})\s*([\d,.]+)\s*\|\s*Line total:\s*([A-Z]{3})\s*([\d,.]+)\s*$", re.I)
 LABELS = {"seller": "卖方", "buyer": "买方", "currency": "币种", "total": "总额",
           "quantity": "数量", "deposit_percent": "预付款比例", "payment_days": "账期",
           "shipment_date": "装运日期", "delivery_date": "交付日期", "incoterm": "贸易术语",
@@ -51,6 +52,8 @@ def extract(doc):
     facts = []
     for block in doc["blocks"]:
         for field, pattern in PATTERNS.items():
+            if field in {"quantity", "total"} and re.search(r"\bSKU:", block["text"], re.I):
+                continue  # Line quantities/amounts are not document-level totals.
             match = re.search(pattern, block["text"], re.I)
             if match:
                 raw = match.group(1).split("|")[0].strip()
@@ -65,6 +68,52 @@ def extract(doc):
                     evidence=Evidence(document_id=doc["id"], block_id=block["id"],
                                       quote=block["text"], location=block["location"])).model_dump())
     return facts
+
+
+def extract_items(doc):
+    items = []
+    for block in doc["blocks"]:
+        start = re.search(r"\bSKU:", block["text"], re.I)
+        if not start:
+            continue
+        evidence = {"document_id": doc["id"], "block_id": block["id"], "quote": block["text"], "location": block["location"]}
+        match = ITEM_PATTERN.fullmatch(block["text"][start.start():].strip())
+        if not match:
+            items.append({"error": "行项目格式或数值不完整，请人工核对", "evidence": evidence})
+            continue
+        sku, qty, unit, currency, price, total_currency, total = match.groups()
+        try:
+            items.append({"sku": sku.strip(), "quantity": normalize("quantity", qty), "unit": (unit or "").strip(),
+                          "currency": currency.upper(), "unit_price": normalize("total", price),
+                          "total_currency": total_currency.upper(), "line_total": normalize("total", total), "evidence": evidence})
+        except ValueError:
+            items.append({"error": "行项目数字格式有歧义，请人工核对", "evidence": evidence})
+    return items
+
+
+def compare_items(reference, target):
+    issues = []
+    left, right = extract_items(reference), extract_items(target)
+    for sku in sorted({i["sku"] for i in left + right if "sku" in i}):
+        a, b = [i for i in left if i.get("sku") == sku], [i for i in right if i.get("sku") == sku]
+        key = f"item:{reference['id']}:{sku}"
+        if len(a) != 1 or len(b) != 1:
+            issues.append(make_finding(key + ":mapping", "missing_info", f"{sku} 商品对应关系待确认",
+                "SKU 未唯一对应；可能缺失、重复或使用了另一种标识。", "人工确认商品对应关系；系统不自动猜测替代商品。", a + b))
+            continue
+        a, b = a[0], b[0]
+        if not a["unit"] or not b["unit"] or a["unit"].casefold() != b["unit"].casefold():
+            issues.append(make_finding(key + ":unit", "missing_info", f"{sku} 计量单位待确认",
+                f"参考单位 {a['unit'] or '未提供'}；合同单位 {b['unit'] or '未提供'}。", "明确单位和换算关系后再比较数量与单价。", [a, b]))
+            continue
+        for field, label in [("quantity", "数量"), ("unit_price", "单价")]:
+            if field == "unit_price" and a["currency"] != b["currency"]:
+                issues.append(make_finding(key + ":currency", "missing_info", f"{sku} 单价币种不同",
+                    f"{a['currency']} 与 {b['currency']} 无法直接比较。", "补充汇率、时间和换算口径后人工核对。", [a, b]))
+            elif a[field] != b[field]:
+                issues.append(make_finding(key + ":" + field, "difference", f"{sku} {label}发生变化",
+                    f"{reference['name']}：{a[field]}；{target['name']}：{b[field]}。", "确认商品规格和双方接受的条件。", [a, b], "info"))
+    return issues
 
 
 def evidence_valid(evidence, documents):
@@ -98,6 +147,7 @@ def compare_documents(documents, reference_ids):
     if not references:
         issues.append(make_finding("missing:reference", "missing_info", "尚未指定参考材料", "跨文档比较需要明确参考报价或订单。", "在文档列表选择参考文件。"))
     for ref in references:
+        issues.extend(compare_items(ref, target))
         for field in PATTERNS:
             left, right = unique_fact(ref, field), unique_fact(target, field)
             if left and right and left["value"].casefold() != right["value"].casefold():
@@ -130,15 +180,14 @@ def policy_review(documents, policy):
                 issue["basis"] = [{"title": p.version, "type": "enterprise_policy", "value": limit}]
                 issues.append(issue)
         # Explicit line items are checked independently; totals with unidentified fees are not equated.
-        for block in doc["blocks"]:
-            match = re.search(r"SKU:\s*([^|]+)\|\s*Quantity:\s*([\d,.]+)\s*\|\s*Unit price:\s*([A-Z]{3})\s*([\d,.]+)\s*\|\s*Line total:\s*([A-Z]{3})\s*([\d,.]+)", block["text"], re.I)
-            if match:
-                sku, qty, currency, price, total_currency, total = match.groups()
-                if currency.upper() != total_currency.upper():
-                    issues.append(make_finding(f"currency:{doc['id']}:{block['id']}", "missing_info", "行项目币种不同", "无法直接执行金额核对。", "统一币种或补充换算依据。"))
-                elif Decimal(qty.replace(",", "")) * Decimal(price.replace(",", "")) != Decimal(total.replace(",", "")):
-                    fact = {"evidence": {"document_id": doc["id"], "block_id": block["id"], "quote": block["text"], "location": block["location"]}}
-                    issues.append(make_finding(f"arithmetic:{doc['id']}:{block['id']}", "business_risk", f"{sku.strip()} 行金额不一致", "数量乘单价与行金额不一致。", "核对单价、数量和该行折扣或费用。", [fact], "high"))
+        for item in extract_items(doc):
+            block_id = item["evidence"]["block_id"]
+            if item.get("error"):
+                issues.append(make_finding(f"item-invalid:{doc['id']}:{block_id}", "missing_info", "行项目需要人工校对", item["error"], "补充完整 SKU、数量、单位、单价和行金额。", [item]))
+            elif item["currency"] != item["total_currency"]:
+                issues.append(make_finding(f"currency:{doc['id']}:{block_id}", "missing_info", "行项目币种不同", "无法直接执行金额核对。", "统一币种或补充换算依据。", [item]))
+            elif Decimal(item["quantity"]) * Decimal(item["unit_price"]) != Decimal(item["line_total"]):
+                issues.append(make_finding(f"arithmetic:{doc['id']}:{block_id}", "business_risk", f"{item['sku']} 行金额不一致", "数量乘单价与行金额不一致。", "核对单价、数量和该行折扣或费用、舍入约定。", [item], "high"))
     return issues
 
 

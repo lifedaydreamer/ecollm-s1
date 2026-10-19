@@ -7,12 +7,21 @@ def report_text(case, run):
              f"状态 {run['status']} / 模型 {run.get('model', 'rules-only')}", ""]
     for limitation in run.get("limitations", []):
         lines.append("覆盖范围说明：" + limitation)
+    delta = run.get("revision_delta", {})
+    if delta.get("previous_run_id"):
+        lines += ["", f"修订复查：对照 R{delta['previous_revision']} / {delta['previous_run_id']}",
+                  f"新增 {len(delta['added'])}；再次检出 {len(delta['repeated'])}；未再检出 {len(delta['not_redetected'])}。",
+                  "未再检出不代表已解决；本次处理意见与审批需要独立确认。"]
+        lines += ["对照条件变化：" + n for n in delta.get("notes", [])]
+        lines += ["未再检出：" + f["title"] for f in delta["not_redetected"]]
     for f in run.get("findings", []):
         lines += ["", f"[{f['severity']}] {f['title']}", f["explanation"], "建议：" + f["suggestion"]]
         for e in f["evidence"]:
             lines.append(f"证据 {e['document_id']} / {e['location']} / {e['block_id']}：{e['quote']}")
         for basis in f.get("basis", []):
             lines.append(f"依据或解释 {basis.get('title','')}：{basis.get('source','企业策略')} / {basis.get('version','')} {basis.get('text','')}")
+            if basis.get("applicability"):
+                lines.append("适用条件待核实：" + basis["applicability"])
         d = run.get("decisions", {}).get(f["id"])
         if d:
             lines.append(f"处理 {d['action']}：{d['reason']}")

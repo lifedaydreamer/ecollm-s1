@@ -54,7 +54,7 @@ class Finding(StrictModel):
 
 
 class Policy(StrictModel):
-    version: str = "seller-v1"
+    version: str = Field(default="seller-v1", min_length=1, max_length=80)
     min_deposit_percent: float = Field(default=30, ge=0, le=100)
     max_payment_days: int = Field(default=30, ge=0, le=365)
 

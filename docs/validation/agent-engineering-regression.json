@@ -1,0 +1,275 @@
+{
+  "benchmark": "engineering-regression-v1",
+  "input_sha256": "d053528b06ccb6f2ed36b444fbcb639d2695ed4786381f54aed3afdf4f266bf3",
+  "scope": "受控工程回归，非独立专业效果测试；同源模板变体不可用于泛化结论",
+  "model_calls": 0,
+  "passed": 28,
+  "total": 28,
+  "engineering_success_rate": 1.0,
+  "results": [
+    {
+      "id": "normal",
+      "category": "normal",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 0,
+      "seconds": 0.165
+    },
+    {
+      "id": "amount-change",
+      "category": "difference",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.207
+    },
+    {
+      "id": "deposit-risk",
+      "category": "policy",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 2,
+      "seconds": 0.216
+    },
+    {
+      "id": "credit-risk",
+      "category": "policy",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 2,
+      "seconds": 0.199
+    },
+    {
+      "id": "buyer-change",
+      "category": "identity",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.193
+    },
+    {
+      "id": "seller-change",
+      "category": "identity",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.19
+    },
+    {
+      "id": "currency-change",
+      "category": "currency",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.19
+    },
+    {
+      "id": "shipment-change",
+      "category": "date",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.19
+    },
+    {
+      "id": "invalid-date",
+      "category": "date",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.191
+    },
+    {
+      "id": "missing-buyer",
+      "category": "missing",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.245
+    },
+    {
+      "id": "ambiguous-total",
+      "category": "missing",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.178
+    },
+    {
+      "id": "no-reference",
+      "category": "missing",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.195
+    },
+    {
+      "id": "no-contract",
+      "category": "missing",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.168
+    },
+    {
+      "id": "line-arithmetic",
+      "category": "arithmetic",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.209
+    },
+    {
+      "id": "sku-reordered",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 0,
+      "seconds": 0.169
+    },
+    {
+      "id": "sku-quantity",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.195
+    },
+    {
+      "id": "sku-price",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.199
+    },
+    {
+      "id": "sku-unit",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.198
+    },
+    {
+      "id": "sku-currency",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.193
+    },
+    {
+      "id": "sku-duplicate",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.2
+    },
+    {
+      "id": "sku-unit-absent",
+      "category": "items",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.176
+    },
+    {
+      "id": "sku-number-invalid",
+      "category": "arithmetic",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.185
+    },
+    {
+      "id": "line-currency",
+      "category": "arithmetic",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.174
+    },
+    {
+      "id": "stricter-policy",
+      "category": "policy",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 2,
+      "seconds": 0.16
+    },
+    {
+      "id": "format-docx",
+      "category": "format",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.419
+    },
+    {
+      "id": "format-xlsx",
+      "category": "format",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.428
+    },
+    {
+      "id": "format-pdf",
+      "category": "format",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 1,
+      "seconds": 0.325
+    },
+    {
+      "id": "untrusted-document",
+      "category": "boundary",
+      "passed": true,
+      "missing": [],
+      "unexpected": [],
+      "findings": 0,
+      "seconds": 0.182
+    }
+  ],
+  "limitations": [
+    "受控同源模板回归，不是封存独立测试集",
+    "不测自然语言语义、OCR 或真实用户收益",
+    "不能替代风险 Macro-F1、模型消融和专业复核"
+  ],
+  "environment": {
+    "server": "mya-server",
+    "python": "3.12",
+    "mode": "isolated CPU-only API TestClient",
+    "date": "2026-10-19",
+    "gpu_model_check": "not executed: GPU process PID was not resolvable inside container; no inference or training requested"
+  }
+}

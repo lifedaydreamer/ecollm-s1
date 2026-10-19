@@ -106,16 +106,30 @@ flowchart LR
 | 本地模型 | 独立 `extract` / `review` / `compare` API；原始 Qwen + 可选 PEFT Adapter |
 | 导出 | PDF、DOCX、JSON、TXT；修改建议需要人工确认 |
 
+## 本轮新增：从差异发现走到修订复查
+
+- **商品逐项核对**：按显式 SKU 比较数量与单价，单位、币种或对应关系有疑点时转人工核验。
+- **修订前后对照**：展示新增、再次检出和未再检出的问题；保留历史原文与处理记录，新版本独立审批。
+- **企业策略可配置**：在工作台调整预付款与账期阈值，保存后要求重新审查。
+- **依据看得见**：展开企业阈值、原创复核清单与官方来源摘要，查看来源、版本和适用条件。
+- **模型引用更严格**：跨文档差异需要双边证据；页码/位置来自原文块，不能由模型任意填写。
+
+商品行示例：`SKU: CUP-01 | Quantity: 10 | Unit: pcs | Unit price: USD 12 | Line total: USD 120`。当前不自动换算单位，也不把“未再检出”视为已解决。
+
+![真实工作台：修订复查与历史审查](docs/assets/revision-review.png)
+
+参赛差距、优先级和下一轮验收见[竞赛竞争力分析与优化记录](docs/COMPETITION_READINESS.md)。
+
 ## 验证与边界
 
-CI 检查后端行为、前端生产构建、预览与规则结果一致性，并从全新 Docker 环境走通三个案例的认证、审查、审批和导出。GPU 推理不在普通 CI 中执行。
+CI 检查后端行为、前端生产构建、预览与规则结果一致性，并从全新 Docker 环境走通三个案例的认证、审查、审批和导出。GPU 推理不在普通 CI 中执行。新增的 28 场景 API 工程回归也在 CI 执行并保存逐场景报告；这是受控同源模板回归，不代表独立专业测试成绩。
 
 已完成的原始模型工程验证包括三个任务接口和一个虚构案例完整流程；**它们不是独立效果评测**。专业数据集、QLoRA 训练、100 个 Agent 案例、消融实验和用户试用仍待建设。
 
 - 扫描 PDF 会提示需要 OCR，尚未集成完整扫描件解析。
 - 当前为单工作区、单业务进程；适合自行运行和演示，多用户服务需要补权限隔离与并发队列。
 - 语义上下文有长度和参考文件数量限制，覆盖不足会在报告中提示。
-- 知识库为初版原创解释；权威资料与完整 BGE / pgvector 检索尚待验收。
+- 知识库含 11 条原创清单和官方来源摘要；具体法律适用、完整 BGE / pgvector 检索仍待专业复核与验收。
 
 完整信息见[实施状态](docs/STATUS.md)、[验证记录](docs/VALIDATION.md)与[阶段任务](docs/ROADMAP.md)。
 
@@ -140,6 +154,7 @@ python3.12 -m venv .venv
 .venv/bin/pip install --no-deps -e .
 .venv/bin/python -m pytest -q
 .venv/bin/python scripts/build_preview.py --check
+.venv/bin/python scripts/benchmark_agent.py --output .data/agent-regression.json
 cd web
 npm ci
 npm run build

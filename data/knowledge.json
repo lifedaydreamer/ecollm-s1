@@ -1,0 +1,5 @@
+[
+ {"id":"policy-explanation","type":"professional_explanation","title":"预付款与账期审查说明","text":"预付款 deposit 账期 payment days 应按企业审查策略判断。文件条件变化先记录差异，再核对例外接受理由。","source":"TradePilot 原创说明","license":"CC0-1.0","version":"1","applicability":"卖方商务复核；不提供法律结论"},
+ {"id":"amount-explanation","type":"professional_explanation","title":"金额口径核对说明","text":"金额 total amount 单价 quantity price 运费 freight 保险 insurance 折扣 discount 的组成应分别核对。金额差异不自动构成卖方损失。","source":"TradePilot 原创说明","license":"CC0-1.0","version":"1","applicability":"普通货物贸易报价与合同"},
+ {"id":"evidence-explanation","type":"professional_explanation","title":"规则适用前的信息检查","text":"规则 applicability 与 jurisdiction 需要交易主体、地区、约定版本和合同选择等背景。信息不足时应请求补充。","source":"TradePilot 原创说明","license":"CC0-1.0","version":"1","applicability":"信息完整性检查"}
+]

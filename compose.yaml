@@ -1,0 +1,36 @@
+name: tradepilot-demo
+services:
+  api:
+    build: .
+    environment:
+      TRADEPILOT_TOKEN: ${TRADEPILOT_TOKEN:?run python scripts/demo.py start}
+      TRADEPILOT_MODEL_TOKEN: ${TRADEPILOT_MODEL_TOKEN:?run python scripts/demo.py start}
+      TRADEPILOT_MODEL_URL: ""
+      TRADEPILOT_MODEL_NAME: rules-only
+      LANGSMITH_TRACING: "false"
+      LANGCHAIN_TRACING_V2: "false"
+    volumes: ["documents:/app/.data"]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8100/health', timeout=5)"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+      start_period: 10s
+  web:
+    build: ./web
+    environment:
+      TRADEPILOT_TOKEN: ${TRADEPILOT_TOKEN}
+      TRADEPILOT_API_URL: http://api:8100
+      NEXT_TELEMETRY_DISABLED: "1"
+    ports: ["127.0.0.1:${TRADEPILOT_PORT:-3100}:3100"]
+    restart: unless-stopped
+    depends_on:
+      api: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3100/',{headers:{Authorization:'Basic '+Buffer.from('tradepilot:'+process.env.TRADEPILOT_TOKEN).toString('base64')}}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+volumes:
+  documents:

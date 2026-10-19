@@ -1,0 +1,9 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY pyproject.toml ./
+COPY tradepilot tradepilot
+RUN pip install --no-cache-dir torch==2.9.1 --index-url https://download.pytorch.org/whl/cu126 \
+    && pip install --no-cache-dir '.[model]' 'transformers==4.57.3' 'lm-format-enforcer==0.11.3'
+COPY scripts/gpu_guard.py scripts/gpu_guard.py
+RUN useradd -m app && mkdir -p /app/.data && chown -R app:app /app
+USER app

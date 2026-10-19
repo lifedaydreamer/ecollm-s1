@@ -1,0 +1,15 @@
+.git
+.env*
+.runtime
+.data
+.venv
+.model-venv
+**/__pycache__
+**/node_modules
+**/.next
+models
+checkpoints
+artifacts
+*.safetensors
+*.bin
+.download-venv

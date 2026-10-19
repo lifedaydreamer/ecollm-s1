@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tradepilot"
+version = "0.1.0"
+description = "Evidence-driven B2B trade document review"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "sqlalchemy>=2,<3",
+  "alembic>=1.15,<2", "python-multipart>=0.0.20", "httpx>=0.28,<1",
+  "langgraph>=1,<2", "langgraph-checkpoint-sqlite>=3,<4",
+  "pdfplumber>=0.11,<1", "python-docx>=1.1,<2", "openpyxl>=3.1,<4",
+  "reportlab>=4.3,<5", "pyyaml>=6,<7"
+]
+
+[project.optional-dependencies]
+production = ["celery>=5.5,<6", "redis>=5,<7", "psycopg[binary,pool]>=3.2,<4", "langgraph-checkpoint-postgres>=3,<4"]
+model = ["transformers>=4.57,<5", "peft>=0.17,<1", "accelerate>=1.10,<2", "datasets>=4,<5", "lm-format-enforcer>=0.11,<1"]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+tradepilot = "tradepilot.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tradepilot*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

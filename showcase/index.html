@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="TradePilot 贸航 AI：跨境 B2B 多文档审查。浏览器内体验证据对照，再下载到自己的设备运行。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>TradePilot · 贸航 AI — 每一处差异，都有据可查</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+  <script src="cases.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <header class="nav"><a class="wordmark" href="#"><span class="mark">↗</span> TradePilot <span class="cn">贸航 AI</span></a><nav><a href="#experience">交互演示</a><a href="#run">自行运行</a><a class="repo" href="https://github.com/lifedaydreamer/ecollm-s1">GitHub ↗</a></nav></header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow"><span></span> OPEN DEMO / 跨境 B2B 多文档审查</p><h1>每一处差异，<br>都有据可查<span class="period">。</span></h1><p class="lead">从报价到合同，把条件变化、企业策略与原文证据放在一起。<br>你作出决定，贸航保留依据。</p><div class="hero-actions"><a class="button primary" href="#experience">打开交互演示 <span>↓</span></a><a class="button secondary" href="#run">在我的设备上运行 ↗</a></div><p class="privacy">本页无需登录 · 无模型调用 · 无文件上传</p></div>
+      <aside class="paper-stack" aria-label="虚构案例中的报价与合同差异"><div class="paper back"><span class="paper-label">01 / QUOTATION</span><h2>报价已发出。</h2><div class="paper-row"><span>Total</span><b>USD 90,000</b></div><div class="paper-row"><span>Deposit</span><b>30%</b></div><div class="paper-row"><span>Balance due</span><b>30 days</b></div></div><div class="paper front"><div class="paper-label">02 / DRAFT CONTRACT <span class="pill">待核对</span></div><h2>条件发生了变化。</h2><div class="paper-row"><span>Total</span><b class="changed">USD 95,000 ↗</b></div><div class="paper-row"><span>Deposit</span><b class="changed">0% ↘</b></div><div class="paper-row"><span>Balance due</span><b class="changed">90 days ↗</b></div><div class="paper-note">发现差异 ≠ 自动判定风险<br><small>风险需要结合企业策略与人工判断。</small></div></div><span class="specimen">SYNTHETIC CASE / 虚构示例</span></aside>
+    </section>
+    <div class="principles"><span><b>01</b> 原文证据可追溯</span><span><b>02</b> 差异与风险分开</span><span><b>03</b> 人工确认后归档</span><span><b>04</b> 在你的设备上运行</span></div>
+    <section id="experience" class="experience">
+      <div class="section-heading"><div><p class="eyebrow">TRY THE WORKFLOW</p><h2>用一笔交易，走一遍审查。</h2></div><span class="mode-badge">浏览器预览 / 规则结果快照</span></div>
+      <p class="section-copy">以下结果由项目的 Python 规则引擎生成。切换案例、点击引用、模拟核对；完整上传与模型审查请运行本地工作台。</p>
+      <div class="scenario-tabs" role="group" aria-label="选择虚构案例"><button data-scenario="conflict" class="selected" aria-pressed="true"><span>01</span> 条件发生变化</button><button data-scenario="normal" aria-pressed="false"><span>02</span> 正常交易</button><button data-scenario="missing" aria-pressed="false"><span>03</span> 材料不足</button></div>
+      <div class="workbench">
+        <div class="workbench-bar"><div><span class="status-dot"></span><strong id="case-title">报价与合同条件变化</strong><span class="subtle">CASE / DEMO</span></div><button id="revision" class="small-button">查看修订后的规则结果 ↗</button></div>
+        <div class="columns">
+          <section class="column source"><div class="column-heading"><h3>01 / 业务原文</h3><span>点击证据可定位</span></div><div id="doc-tabs" class="doc-tabs" role="group" aria-label="选择文档"></div><div id="source" class="source-text" tabindex="0" aria-label="业务材料原文"></div></section>
+          <section class="column facts"><div class="column-heading"><h3>02 / 结构化事实</h3><span>合同字段</span></div><div id="facts"></div><div class="policy"><span>SELLER POLICY / seller-v1</span><p>最低预付款 <b>30%</b></p><p>最长账期 <b>30 天</b></p><small>阈值属于示例企业策略。</small></div></section>
+          <section class="column review"><div class="column-heading"><h3>03 / 审查发现</h3><span id="finding-count"></span></div><div class="filters" role="group" aria-label="筛选审查结果"><button data-filter="all" class="on">全部</button><button data-filter="difference">差异</button><button data-filter="business_risk">风险</button><button data-filter="missing_info">待补充</button></div><div id="findings" class="findings" aria-live="polite"></div></section>
+        </div>
+        <div class="review-footer"><div><b id="progress">尚未模拟核对</b><span>此页的核对操作仅保存在当前页面，刷新后重置。</span></div><button class="small-button" id="export">下载演示 JSON ↓</button></div>
+      </div>
+      <div class="scope-note"><span>范围说明</span><p>这是预生成的虚构规则案例，不运行大模型，不上传用户文件，也不提交真实审批。正常案例的“未发现问题”仅代表规则检查结果，不能视为合同全面无风险。</p></div>
+    </section>
+    <section id="run" class="run-section"><div><p class="eyebrow">YOUR MACHINE. YOUR WORKSPACE.</p><h2>把完整工作台，<br>带到你自己的设备。</h2><p>GitHub 提供代码、案例、启动配置和模型校验清单。<br>运行后，你的文件与推理请求均由你的环境处理。</p><a href="https://github.com/lifedaydreamer/ecollm-s1#quick-start">打开完整运行指南 ↗</a></div><div class="terminal"><div class="terminal-bar"><span>QUICK START</span><button id="copy" aria-label="复制启动命令">复制</button></div><pre><code>git clone https://github.com/lifedaydreamer/ecollm-s1.git
+cd ecollm-s1
+python3 scripts/demo.py start</code></pre><p>先安装 Docker 与 Python 3.11+。默认无需 GPU，使用规则基线。<br>有 NVIDIA GPU 时，可按 README 接入自己的 Qwen 权重。</p></div></section>
+    <section class="modes"><article><span>A / IN YOUR BROWSER</span><h3>直接看</h3><p>当前交互预览。无需安装，适合介绍项目和查看三个示例。</p></article><article><span>B / NO GPU REQUIRED</span><h3>下载运行</h3><p>完整上传、证据、人工处理与报告导出。默认运行确定性规则。</p></article><article><span>C / BRING YOUR MODEL</span><h3>接入本地模型</h3><p>在自己的 GPU 上运行原始 Qwen；支持后续加载自训练 Adapter。</p></article></section>
+  </main>
+  <footer><a class="wordmark" href="#">↗ TradePilot <span class="cn">贸航 AI</span></a><p>工程原型 · 专业微调与独立效果评测仍在建设中</p><a href="https://github.com/lifedaydreamer/ecollm-s1">Source on GitHub ↗</a></footer>
+</body>
+</html>

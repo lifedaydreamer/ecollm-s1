@@ -1,0 +1,8 @@
+{
+  "bytes": 23612264,
+  "sha256": "cc9ac3bcdae80bf41781df2d2ba1a77ff5a58ca1302385853e35222734ec3607",
+  "tensors": 144,
+  "parameters": 5898240,
+  "all_finite": true,
+  "device_used": "cpu"
+}

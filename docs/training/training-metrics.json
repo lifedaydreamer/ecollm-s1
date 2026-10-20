@@ -1,0 +1,10 @@
+{
+  "train_runtime": 121.3597,
+  "train_samples_per_second": 5.859,
+  "train_steps_per_second": 1.467,
+  "train_loss": 0.08797910683945323,
+  "epoch": 1.0,
+  "elapsed_seconds": 128.32539020478725,
+  "gpu_peak_mib": 13800.265625,
+  "trainable_parameters": 5898240
+}

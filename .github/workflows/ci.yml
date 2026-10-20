@@ -20,6 +20,7 @@ jobs:
         if: always()
         with:
           name: agent-engineering-regression
+          include-hidden-files: true
           path: |
             .data/agent-regression.json
             .data/payment-before-after.json

@@ -104,7 +104,8 @@ def main():
                 # Preserve the business application; add only the explicitly opted-in resource utility.
                 copied=project/"scripts/cooperative_gpu_guard.py"
                 shutil.copyfile(root/"scripts/cooperative_gpu_guard.py",copied)
-                env=services.environment();env["TRADEPILOT_MODEL_MEMORY_FRACTION"]="0.275"
+                env=services.environment();env["TRADEPILOT_MODEL_PATH"]=str(a.model)
+                env["TRADEPILOT_MODEL_MEMORY_FRACTION"]="0.275"
                 env["TRADEPILOT_GPU_LOCK_DIR"]=str(project/".data")
                 sharing=["--snapshot-existing"] if a.shared_snapshot else ["--existing-pid",str(a.shared_existing_pid)]
                 cmd=[str(project/".model-venv/bin/python"),str(copied),"--gpu",a.gpu,*sharing,"--",

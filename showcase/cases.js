@@ -2246,6 +2246,394 @@ globalThis.TRADEPILOT_CASES = {
         ],
         "origin": "rule"
       }
-    ]
+    ],
+    "before": {
+      "synthetic": true,
+      "engine": "previous-literal-parser",
+      "policy": {
+        "version": "seller-v1",
+        "min_deposit_percent": 30,
+        "max_payment_days": 30
+      },
+      "documents": [
+        {
+          "id": "inquiry",
+          "kind": "inquiry",
+          "name": "inquiry.txt",
+          "blocks": [
+            {
+              "id": "b1",
+              "text": "Buyer: Northstar Trading Ltd",
+              "page": null,
+              "location": "line 1",
+              "bbox": null
+            },
+            {
+              "id": "b2",
+              "text": "Quantity: 5000",
+              "page": null,
+              "location": "line 2",
+              "bbox": null
+            },
+            {
+              "id": "b3",
+              "text": "Shipment date: 2027-01-15",
+              "page": null,
+              "location": "line 3",
+              "bbox": null
+            },
+            {
+              "id": "b4",
+              "text": "Please quote household storage products.",
+              "page": null,
+              "location": "line 4",
+              "bbox": null
+            }
+          ],
+          "warnings": [],
+          "facts": [
+            {
+              "id": "inquiry:buyer:b1",
+              "field": "buyer",
+              "raw": "Northstar Trading Ltd",
+              "value": "Northstar Trading Ltd",
+              "evidence": {
+                "document_id": "inquiry",
+                "block_id": "b1",
+                "quote": "Buyer: Northstar Trading Ltd",
+                "location": "line 1"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "inquiry:quantity:b2",
+              "field": "quantity",
+              "raw": "5000",
+              "value": "5000",
+              "evidence": {
+                "document_id": "inquiry",
+                "block_id": "b2",
+                "quote": "Quantity: 5000",
+                "location": "line 2"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "inquiry:shipment_date:b3",
+              "field": "shipment_date",
+              "raw": "2027-01-15",
+              "value": "2027-01-15",
+              "evidence": {
+                "document_id": "inquiry",
+                "block_id": "b3",
+                "quote": "Shipment date: 2027-01-15",
+                "location": "line 3"
+              },
+              "confirmed": false
+            }
+          ]
+        },
+        {
+          "id": "quote",
+          "kind": "quote",
+          "name": "quotation.txt",
+          "blocks": [
+            {
+              "id": "b1",
+              "text": "Seller: Ningbo Horizon Goods Co Ltd",
+              "page": null,
+              "location": "line 1",
+              "bbox": null
+            },
+            {
+              "id": "b2",
+              "text": "Buyer: Northstar Trading Ltd",
+              "page": null,
+              "location": "line 2",
+              "bbox": null
+            },
+            {
+              "id": "b3",
+              "text": "Currency: USD",
+              "page": null,
+              "location": "line 3",
+              "bbox": null
+            },
+            {
+              "id": "b4",
+              "text": "Quantity: 5000",
+              "page": null,
+              "location": "line 4",
+              "bbox": null
+            },
+            {
+              "id": "b5",
+              "text": "Total: USD 90000",
+              "page": null,
+              "location": "line 5",
+              "bbox": null
+            },
+            {
+              "id": "b6",
+              "text": "Payment terms: 30% as a deposit, balance 70% payable within 30 days after shipment.",
+              "page": null,
+              "location": "line 6",
+              "bbox": null
+            },
+            {
+              "id": "b7",
+              "text": "Incoterm: FOB Ningbo Incoterms 2020",
+              "page": null,
+              "location": "line 7",
+              "bbox": null
+            }
+          ],
+          "warnings": [],
+          "facts": [
+            {
+              "id": "quote:seller:b1",
+              "field": "seller",
+              "raw": "Ningbo Horizon Goods Co Ltd",
+              "value": "Ningbo Horizon Goods Co Ltd",
+              "evidence": {
+                "document_id": "quote",
+                "block_id": "b1",
+                "quote": "Seller: Ningbo Horizon Goods Co Ltd",
+                "location": "line 1"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "quote:buyer:b2",
+              "field": "buyer",
+              "raw": "Northstar Trading Ltd",
+              "value": "Northstar Trading Ltd",
+              "evidence": {
+                "document_id": "quote",
+                "block_id": "b2",
+                "quote": "Buyer: Northstar Trading Ltd",
+                "location": "line 2"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "quote:currency:b3",
+              "field": "currency",
+              "raw": "USD",
+              "value": "USD",
+              "evidence": {
+                "document_id": "quote",
+                "block_id": "b3",
+                "quote": "Currency: USD",
+                "location": "line 3"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "quote:quantity:b4",
+              "field": "quantity",
+              "raw": "5000",
+              "value": "5000",
+              "evidence": {
+                "document_id": "quote",
+                "block_id": "b4",
+                "quote": "Quantity: 5000",
+                "location": "line 4"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "quote:total:b5",
+              "field": "total",
+              "raw": "90000",
+              "value": "90000",
+              "evidence": {
+                "document_id": "quote",
+                "block_id": "b5",
+                "quote": "Total: USD 90000",
+                "location": "line 5"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "quote:incoterm:b7",
+              "field": "incoterm",
+              "raw": "FOB Ningbo Incoterms 2020",
+              "value": "FOB Ningbo Incoterms 2020",
+              "evidence": {
+                "document_id": "quote",
+                "block_id": "b7",
+                "quote": "Incoterm: FOB Ningbo Incoterms 2020",
+                "location": "line 7"
+              },
+              "confirmed": false
+            }
+          ]
+        },
+        {
+          "id": "contract",
+          "kind": "contract",
+          "name": "contract.txt",
+          "blocks": [
+            {
+              "id": "b1",
+              "text": "Seller: Ningbo Horizon Goods Co Ltd",
+              "page": null,
+              "location": "line 1",
+              "bbox": null
+            },
+            {
+              "id": "b2",
+              "text": "Buyer: Northstar Trading Ltd",
+              "page": null,
+              "location": "line 2",
+              "bbox": null
+            },
+            {
+              "id": "b3",
+              "text": "Currency: USD",
+              "page": null,
+              "location": "line 3",
+              "bbox": null
+            },
+            {
+              "id": "b4",
+              "text": "Quantity: 5000",
+              "page": null,
+              "location": "line 4",
+              "bbox": null
+            },
+            {
+              "id": "b5",
+              "text": "Total: USD 90000",
+              "page": null,
+              "location": "line 5",
+              "bbox": null
+            },
+            {
+              "id": "b6",
+              "text": "Payment terms: 0% deposit, balance 100% payable within 90 days after delivery.",
+              "page": null,
+              "location": "line 6",
+              "bbox": null
+            },
+            {
+              "id": "b7",
+              "text": "Incoterm: FOB Ningbo Incoterms 2020",
+              "page": null,
+              "location": "line 7",
+              "bbox": null
+            }
+          ],
+          "warnings": [],
+          "facts": [
+            {
+              "id": "contract:seller:b1",
+              "field": "seller",
+              "raw": "Ningbo Horizon Goods Co Ltd",
+              "value": "Ningbo Horizon Goods Co Ltd",
+              "evidence": {
+                "document_id": "contract",
+                "block_id": "b1",
+                "quote": "Seller: Ningbo Horizon Goods Co Ltd",
+                "location": "line 1"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "contract:buyer:b2",
+              "field": "buyer",
+              "raw": "Northstar Trading Ltd",
+              "value": "Northstar Trading Ltd",
+              "evidence": {
+                "document_id": "contract",
+                "block_id": "b2",
+                "quote": "Buyer: Northstar Trading Ltd",
+                "location": "line 2"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "contract:currency:b3",
+              "field": "currency",
+              "raw": "USD",
+              "value": "USD",
+              "evidence": {
+                "document_id": "contract",
+                "block_id": "b3",
+                "quote": "Currency: USD",
+                "location": "line 3"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "contract:quantity:b4",
+              "field": "quantity",
+              "raw": "5000",
+              "value": "5000",
+              "evidence": {
+                "document_id": "contract",
+                "block_id": "b4",
+                "quote": "Quantity: 5000",
+                "location": "line 4"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "contract:total:b5",
+              "field": "total",
+              "raw": "90000",
+              "value": "90000",
+              "evidence": {
+                "document_id": "contract",
+                "block_id": "b5",
+                "quote": "Total: USD 90000",
+                "location": "line 5"
+              },
+              "confirmed": false
+            },
+            {
+              "id": "contract:incoterm:b7",
+              "field": "incoterm",
+              "raw": "FOB Ningbo Incoterms 2020",
+              "value": "FOB Ningbo Incoterms 2020",
+              "evidence": {
+                "document_id": "contract",
+                "block_id": "b7",
+                "quote": "Incoterm: FOB Ningbo Incoterms 2020",
+                "location": "line 7"
+              },
+              "confirmed": false
+            }
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "id": "95e2e22b06b6c6a2",
+          "key": "missing:contract:deposit_percent",
+          "kind": "missing_info",
+          "severity": "medium",
+          "title": "请核实预付款比例",
+          "explanation": "规则提取未得到唯一值；可能是表述未覆盖、字段缺失或存在多处取值。",
+          "suggestion": "查看完整原文并补充或校对字段。",
+          "evidence": [],
+          "basis": [],
+          "origin": "rule"
+        },
+        {
+          "id": "7c70504035e25ea7",
+          "key": "missing:contract:payment_days",
+          "kind": "missing_info",
+          "severity": "medium",
+          "title": "请核实账期",
+          "explanation": "规则提取未得到唯一值；可能是表述未覆盖、字段缺失或存在多处取值。",
+          "suggestion": "查看完整原文并补充或校对字段。",
+          "evidence": [],
+          "basis": [],
+          "origin": "rule"
+        }
+      ]
+    }
   }
 };

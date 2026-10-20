@@ -27,4 +27,5 @@ tradepilot = "tradepilot.cli:main"
 include = ["tradepilot*"]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = ["tests"]

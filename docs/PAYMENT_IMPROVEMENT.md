@@ -8,7 +8,7 @@
 
 提取为预付款 **30%**、账期 **30 天**、触发事件 **shipment**；每个字段保留原文引用。合同改为 `0% deposit, balance 100% payable within 90 days after delivery` 时，可检出 **3 项条件差异与 2 项策略提醒**。
 
-[打开第四个交互案例](https://lifedaydreamer.github.io/ecollm-s1/#payment)。页面使用真实规则引擎生成的虚构案例快照；下载工作台后可上传自己的文件运行这些规则。
+[打开第四个交互案例](https://lifedaydreamer.github.io/ecollm-s1/#payment)。进入案例后可点击“对比改进前解析结果”，在同一份材料上切换旧版和新版。页面使用真实规则引擎生成的虚构案例快照；下载工作台后可上传自己的文件运行这些规则。
 
 ![自建付款案例覆盖前后对比](assets/payment-coverage.svg)
 

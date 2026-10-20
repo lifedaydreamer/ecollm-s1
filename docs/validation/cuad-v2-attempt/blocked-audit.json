@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-20T10:07:39.491219+00:00",
+  "phase": "blocked_gpu_driver_release",
+  "last_successful_phase": "v1_validation_baselines",
+  "training_started": false,
+  "confirmation_evaluated": false,
+  "reason": "V1 validation worker completed metrics, then remained in kernel D state at uvm_gpu_release; pending own suite cancelled; no other tasks stopped, no GPU reset",
+  "resource_samples": 90,
+  "max_observed_task_mib": 9112.0,
+  "min_observed_free_mib": 48756.0
+}

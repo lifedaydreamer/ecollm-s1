@@ -19,6 +19,10 @@ OUTPUT_SCHEMA = {"type":"object", "properties":{"status":{"type":"string","enum"
 
 def messages(record):
     body = record["input"]
+    if not isinstance(body, dict) or set(body) != {"category", "text"}:
+        raise ValueError("Clause input requires exactly category and text")
+    if not isinstance(body["text"], str) or not body["text"].strip():
+        raise ValueError("Clause excerpt must be nonempty text")
     if body["category"] not in CATEGORIES:
         raise ValueError("Unsupported pilot clause category")
     return [{"role":"system","content":SYSTEM},

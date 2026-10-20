@@ -12,6 +12,10 @@ from .model import SYSTEM_PROMPT
 def app_factory():
     model_path = os.environ["TRADEPILOT_MODEL_PATH"]
     token = os.environ["TRADEPILOT_MODEL_TOKEN"]
+    adapter = os.getenv("TRADEPILOT_ADAPTER_PATH")
+    if adapter:
+        from .artifacts import reject_clause_adapter_for_business
+        reject_clause_adapter_for_business(adapter)
     lock = threading.Lock()
     state = {}
 
@@ -30,7 +34,6 @@ def app_factory():
         state["tokenizer"] = AutoTokenizer.from_pretrained(model_path, local_files_only=True, trust_remote_code=False)
         model = AutoModelForCausalLM.from_pretrained(model_path, dtype=torch.bfloat16,
                     local_files_only=True, trust_remote_code=False).to("cuda:0").eval()
-        adapter = os.getenv("TRADEPILOT_ADAPTER_PATH")
         if adapter:
             from peft import PeftModel
             model = PeftModel.from_pretrained(model, adapter, local_files_only=True).eval()

@@ -166,5 +166,12 @@
   "bundle_sha256": "e332caa77b1a37ecc2ea62804685d5fb78da07d13c715d269b163887a7e4cbde",
   "bundle_bytes": 22616857,
   "source_snapshot_commit": "0d062a0cc0d951a08588e6f3e16441dbcb4ee21c",
-  "release_tag_app_baseline": "a7a283f9d2eca54d3153bdd24c964cc2f157d53e"
+  "release_tag_app_baseline": "a7a283f9d2eca54d3153bdd24c964cc2f157d53e",
+  "bundle_root": "TradePilot-CUAD-Pilot-v0.1.0/",
+  "bundle_adapter_prefix": "TradePilot-CUAD-Pilot-v0.1.0/adapters/cuad-pilot-v1/",
+  "portable_files_sha256": {
+    "adapter_model.safetensors": "cc9ac3bcdae80bf41781df2d2ba1a77ff5a58ca1302385853e35222734ec3607",
+    "README.md": "678742275e6a4d4a361eb467bc11c04c21794cc63a67e7f0f78b989dfd6d6bfb",
+    "adapter_config.json": "18822e801a76263fa5ac80129b2a9d73d77f06217e1de47d2cd2b867626654f2"
+  }
 }

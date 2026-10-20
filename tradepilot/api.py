@@ -62,18 +62,28 @@ def create_app(db_url=None, data_dir=None, token=None):
         with mutation_lock:
             with Session() as s:
                 row = s.get(RunRow, run_id)
+                if row is None or row.status in {"approved", "stale"}:
+                    return
                 payload = json.loads(row.payload)
+                current, _ = load_case(s, row.case_id)
+                if current.revision != row.revision:
+                    row.status = "stale"
+                    s.commit()
+                    return
                 if resume:
-                    current, _ = load_case(s, row.case_id)
-                    if current.revision != row.revision:
-                        row.status = "stale"
-                        s.commit()
+                    if not payload.get("approval"):
                         return
+                else:
+                    payload.pop("approval", None)
+                payload.pop("error", None)
                 row.status = "running"
+                row.payload = encode(payload)
                 s.commit()
             try:
-                result = graph.invoke(Command(resume={"approved": True}) if resume else payload["input"],
+                result = graph.invoke(Command(resume={"approved": True}) if resume else {**payload["input"], "approved": False},
                                       {"configurable": {"thread_id": run_id}})
+                if result.get("approved") and not resume:
+                    raise RuntimeError("Workflow approval requires an explicit human approval request")
                 with Session() as s:
                     row = s.get(RunRow, run_id)
                     payload = json.loads(row.payload)
@@ -207,7 +217,8 @@ def create_app(db_url=None, data_dir=None, token=None):
                                   "before": fact["value"], "after": value, "reason": change.reason, "at": now()})
             fact["value"], fact["confirmed"] = value, True
             row.revision += 1
-            body["status"], row.payload = "draft", encode(body)
+            body["status"] = "draft"
+            row.payload = encode(body)
             s.commit()
             return fact
 
@@ -232,7 +243,7 @@ def create_app(db_url=None, data_dir=None, token=None):
                 RunRow.status.in_(["awaiting_review", "approved"])).order_by(RunRow.created_at.desc()))
             run = RunRow(case_id=case_id, revision=case.revision, payload=encode({"input": snapshot, "decisions": {},
                 "previous_run_id": previous.id if previous else None,
-                "model": os.getenv("TRADEPILOT_MODEL_NAME", "rules-only"), "prompt_version": "review-v1", "rule_version": "seller-rules-v2", "validator_version": "evidence-v2-bilateral", "knowledge_snapshot": knowledge_snapshot, "limits": "single-tenant-prototype"}))
+                "model": os.getenv("TRADEPILOT_MODEL_NAME", "rules-only"), "prompt_version": "review-v1", "rule_version": "seller-rules-v3-conflict-preserving", "validator_version": "evidence-v2-bilateral", "knowledge_snapshot": knowledge_snapshot, "limits": "single-tenant-prototype"}))
             s.add(run)
             body["status"] = "running"
             case.payload = encode(body)
@@ -297,7 +308,9 @@ def create_app(db_url=None, data_dir=None, token=None):
             payload["approval"] = {**acknowledgement.model_dump(), "at": now(), "actor": "workspace-user"}
             run.payload = encode(payload)
             s.commit()
-        execute(run_id, resume=True)
+            # Keep the approval gate and graph resume under the same reentrant lock.
+            # Concurrent retries/approvals cannot replay the archive transition.
+            execute(run_id, resume=True)
         return get_run(case_id, run_id)
 
     @app.post("/cases/{case_id}/runs/{run_id}/resume", dependencies=[Depends(authorize)])

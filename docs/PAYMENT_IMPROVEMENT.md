@@ -24,7 +24,7 @@
 | 已输出字段的原文引用匹配率 | 100% | 100% |
 | 模型调用 | 0 | 0 |
 
-另有 **37 项后端测试、28 / 28 个原有业务回归场景**通过。实际逐案例结果见 [JSON 记录](validation/payment-before-after.json)，输入见 [24 个受控案例](../data/benchmarks/payment-terms.json)。
+另有 **40 项后端测试、28 / 28 个原有业务回归场景**通过。实际逐案例结果见 [JSON 记录](validation/payment-before-after.json)，输入见 [24 个受控案例](../data/benchmarks/payment-terms.json)。
 
 **这组案例是与规则一起设计的工程覆盖测试，不是独立准确率评测。** 不能将 100% 写成“外贸合同理解准确率”。旧版的 7 个通过案例多数是应不输出字段的负例；字段 Micro-F1 同时报告，避免仅看案例匹配率造成误解。
 

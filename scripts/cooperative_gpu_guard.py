@@ -18,7 +18,7 @@ def query(kind, fields):
     return list(csv.reader(output.splitlines(), skipinitialspace=True))
 
 
-def inspect(uuid, existing_pids, max_job_mib=24576, reserve_mib=16384, startup=False):
+def inspect(uuid, existing_pids, max_job_mib=24576, reserve_mib=16384, startup=False, allow_busy=False):
     gpu = next((r for r in query("gpu", "uuid,memory.total,memory.free,utilization.gpu") if r[0] == uuid), None)
     if gpu is None: raise RuntimeError("Allocated GPU UUID is unavailable; never switch devices")
     processes = [r for r in query("compute-apps", "gpu_uuid,pid,used_gpu_memory") if r[0] == uuid]
@@ -26,7 +26,7 @@ def inspect(uuid, existing_pids, max_job_mib=24576, reserve_mib=16384, startup=F
         raise RuntimeError("An unapproved GPU process appeared before launch")
     total, free, util = map(float, gpu[1:])
     job_usage = sum(float(r[2]) for r in processes if int(r[1]) not in existing_pids)
-    if startup and (free < max_job_mib + reserve_mib + 2048 or util > 5):
+    if startup and (free < max_job_mib + reserve_mib + 2048 or (util > 5 and not allow_busy)):
         raise RuntimeError("Shared GPU does not have the required idle utilization and free-memory margin")
     if not startup and (free < reserve_mib or job_usage > max_job_mib):
         raise RuntimeError("Shared GPU memory limit approached; stop only this task")
@@ -58,6 +58,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--gpu", required=True); p.add_argument("--existing-pid", type=int, action="append", default=[])
     p.add_argument("--snapshot-existing", action="store_true", help="Explicitly authorized sharing: snapshot current occupants, then require three stable idle checks")
+    p.add_argument("--allow-busy-shared", action="store_true", help="Explicitly authorized compute sharing; retain memory cap, reserve and stable occupant checks")
     p.add_argument("--max-job-mib", type=int, default=24576); p.add_argument("--reserve-mib", type=int, default=16384)
     p.add_argument("command", nargs=argparse.REMAINDER); a = p.parse_args()
     if not re.fullmatch(r"GPU-[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}", a.gpu): p.error("Exact GPU UUID required")
@@ -74,7 +75,7 @@ def main():
         elif not existing:
             p.error("Choose explicit sharing snapshot or supply the existing PID set")
         for sample in range(3):
-            snapshot = inspect(a.gpu, existing, a.max_job_mib, a.reserve_mib, startup=True)
+            snapshot = inspect(a.gpu, existing, a.max_job_mib, a.reserve_mib, startup=True, allow_busy=a.allow_busy_shared)
             print(json.dumps({"shared_gpu_preflight": sample + 1, **snapshot}), flush=True)
             if sample < 2: time.sleep(2)
         # Leave CUDA context/library overhead below the user's 24GiB total limit.

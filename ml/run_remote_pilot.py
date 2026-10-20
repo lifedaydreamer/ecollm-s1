@@ -8,14 +8,24 @@ import sys
 import time
 
 
+def process_alive(pid, expected_start):
+    try:
+        stat=Path(f"/proc/{pid}/stat").read_text().rsplit(")",1)[1].split()
+        return stat[0] != "Z" and stat[19] == expected_start
+    except (FileNotFoundError, ProcessLookupError):
+        return False
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument("--project",type=Path,required=True);p.add_argument("--gpu",required=True)
     p.add_argument("--model",type=Path,required=True);p.add_argument("--data",type=Path,required=True)
     p.add_argument("--output",type=Path,required=True);p.add_argument("--config",type=Path,required=True)
     p.add_argument("--suite", action="store_true"); p.add_argument("--old-adapter", type=Path)
+    p.add_argument("--baseline-suite", type=Path)
     p.add_argument("--release-wait-seconds", type=int, default=180)
     p.add_argument("--shared-existing-pid", type=int)
     p.add_argument("--shared-snapshot", action="store_true")
+    p.add_argument("--allow-busy-shared", action="store_true")
     p.add_argument("--restore-model", action="store_true")
     a=p.parse_args();project=a.project.resolve();root=Path(__file__).resolve().parents[1]
     if a.output.exists() and any(a.output.iterdir()):raise SystemExit("Experiment output must be new")
@@ -57,14 +67,18 @@ def main():
     python=project/".venv/bin/python"
     try:
         if own_running:
+            (runtime/"pilot-own-workers.json").write_text(json.dumps({"manager":saved,"workers":own_workers},indent=2))
             state("pausing_verified_own_model")
-            subprocess.run([str(python),str(project/"scripts/services.py"),"stop","model"],cwd=project,check=True)
+            stopped=subprocess.run([str(python),str(project/"scripts/services.py"),"stop","model"],cwd=project)
+            if stopped.returncode:
+                state("own_manager_graceful_shutdown_still_pending",pid=pid)
+
             # A manager can exit before its worker's CUDA context has disappeared.
             # Wait only; never signal a process discovered through nvidia-smi.
             attempts = max(16, a.release_wait_seconds // 2)
             for attempt in range(attempts):
                 if a.shared_snapshot:
-                    busy=[]
+                    busy=[pid] if process_alive(pid,saved["starttime"]) else []
                     for worker_pid, worker_start in own_workers.items():
                         try:
                             stat=Path(f"/proc/{worker_pid}/stat").read_text().rsplit(")",1)[1].split()
@@ -85,16 +99,20 @@ def main():
         if a.shared_existing_pid or a.shared_snapshot:
             guard=[str(root/"scripts/cooperative_gpu_guard.py"),"--gpu",a.gpu]
             guard += ["--snapshot-existing"] if a.shared_snapshot else ["--existing-pid",str(a.shared_existing_pid)]
+            if a.allow_busy_shared: guard += ["--allow-busy-shared"]
             env["TRADEPILOT_GPU_LOCK_DIR"]=str(project/".data")
             env["TRADEPILOT_MAX_ALLOCATOR_GIB"]="22"
             state("explicit_shared_gpu_authorization",existing_pid=a.shared_existing_pid,task_cap_mib=24576,allocator_cap_gib=22,reserve_mib=16384)
         command=[str(project/".model-venv/bin/python"),*guard,"--",
                  str(project/".model-venv/bin/python"),str(root/"ml"/("run_clause_suite.py" if a.suite else "train_clause_pilot.py")),"--model",str(a.model),"--data",str(a.data),"--output",str(a.output),"--config",str(a.config)]
         if a.suite: command += ["--old-adapter", str(a.old_adapter)]
+        if a.suite and a.baseline_suite: command += ["--baseline-suite", str(a.baseline_suite)]
         result=subprocess.run(command,cwd=root,env=env)
         state("pilot_finished",returncode=result.returncode)
     finally:
-        if restore:
+        if restore and own_running and process_alive(pid,saved["starttime"]):
+            state("restore_deferred_own_manager_still_stopping",pid=pid)
+        elif restore:
             state("restoring_original_own_model")
             if a.shared_existing_pid or a.shared_snapshot:
                 import importlib.util
@@ -108,6 +126,7 @@ def main():
                 env["TRADEPILOT_MODEL_MEMORY_FRACTION"]="0.275"
                 env["TRADEPILOT_GPU_LOCK_DIR"]=str(project/".data")
                 sharing=["--snapshot-existing"] if a.shared_snapshot else ["--existing-pid",str(a.shared_existing_pid)]
+                if a.allow_busy_shared: sharing += ["--allow-busy-shared"]
                 cmd=[str(project/".model-venv/bin/python"),str(copied),"--gpu",a.gpu,*sharing,"--",
                      str(project/".model-venv/bin/python"),"-m","uvicorn","tradepilot.model_server:app_factory","--factory","--host","127.0.0.1","--port","8102","--workers","1"]
                 with (project/".runtime/model.log").open("ab") as log:

@@ -32,6 +32,12 @@ def extract_payment_terms(text):
         return facts, warnings
     if ALTERNATIVE.search(text):
         return facts, ["付款条款包含条件或替代方案，需要人工确认，未自动确定付款条件。"]
+    if re.search(r"\b(?:deposit|prepayment|advance\s+payment)\s*:\s*\d+(?:\.\d+)?\s*%?\s*(?:-|–|—|to)\s*\d", text, re.I):
+        warnings.append("预付款表述为范围或上下限，未作为唯一比例；请人工校对。")
+    if re.search(r"\b(?:balance\s+due|payment\s+(?:due|days))\s*:\s*\d+\s*(?:-|–|—|to)\s*\d", text, re.I):
+        warnings.append("账期表述为范围或上下限，未作为唯一账期；请人工校对。")
+    if re.search(r"\b\d+\s+(?:working|business)\s+days?\b", text, re.I):
+        warnings.append("账期使用工作日口径，需要明确日历与节假日，未自动换算为自然日。")
     seen = set()
     def add(field, value, quote):
         key = field, value, quote

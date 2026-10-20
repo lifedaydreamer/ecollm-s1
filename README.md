@@ -134,7 +134,7 @@ flowchart LR
 
 本轮 711 条训练任务、72 条冻结测试任务：证据 token F1 **58.05% → 73.00%**；九类条款存在判断 Macro-F1 **58.32% → 88.66%**。这是过滤后的公开商业合同片段子集成绩，不能当作完整 Agent 或外贸风险准确率。
 
-[查看 V1 真实训练与对照报告](docs/TRAINING_REPORT.md) · [V2 执行记录：训练被驱动回收阻塞，未发布新版权重](docs/TRAINING_V2_REPORT.md) · [训练路线与方向二交付条件](docs/TRAINING_STRATEGY.md)。训练只在具有获配 GPU 的服务器运行，普通电脑默认 Demo 不受影响。
+[查看 V1 真实训练与对照报告](docs/TRAINING_REPORT.md) · [V2 执行记录与待完成项](docs/TRAINING_V2_REPORT.md) · [训练路线与方向二交付条件](docs/TRAINING_STRATEGY.md)。训练只在具有获配 GPU 的服务器运行，普通电脑默认 Demo 不受影响。
 
 使用最新源码时，可直接安装已发布 Adapter，无须使用旧复现包中的代码：
 

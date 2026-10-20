@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -17,6 +18,7 @@ def main():
     p = argparse.ArgumentParser(); p.add_argument("--model", type=Path, required=True)
     p.add_argument("--data", type=Path, required=True); p.add_argument("--output", type=Path, required=True)
     p.add_argument("--config", type=Path, required=True); p.add_argument("--old-adapter", type=Path, required=True)
+    p.add_argument("--baseline-suite", type=Path, help="Reuse only identity-checked completed V1 baselines from a driver-interrupted attempt")
     a = p.parse_args(); root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(root))
     from tradepilot.artifacts import verify_clause_adapter
@@ -40,8 +42,30 @@ def main():
         "confirmation": "only after selection; all seeds reported; old test used solely for regression",
         "no_test_driven_selection": True})
     state("v1_validation_baselines")
-    evaluate_plan([{"name": "v1-basic-validation", "adapter": str(a.old_adapter), "with_definitions": False},
-                   {"name": "v1-guided-validation", "adapter": str(a.old_adapter), "with_definitions": True}], "validation", "old-validation")
+    if a.baseline_suite:
+        from tradepilot.clause_task import score
+        previous_plan = read(a.baseline_suite / "preregistered-plan.json")
+        if previous_plan["data_manifest_sha256"] != hashlib.sha256((a.data / "manifest.json").read_bytes()).hexdigest() or previous_plan["candidate_a"] != config:
+            raise ValueError("Previous baselines used different frozen data or candidate configuration")
+        rows = [json.loads(line) for line in (a.data / "validation.jsonl").read_text().splitlines()]
+        hashes = {}
+        for name, guided in (("v1-basic-validation", False), ("v1-guided-validation", True)):
+            metrics_path = a.baseline_suite / "old-validation" / (name + "-metrics.json")
+            predictions_path = a.baseline_suite / "old-validation" / (name + "-predictions.json")
+            metrics, predictions = read(metrics_path), read(predictions_path)
+            if [r["id"] for r in rows] != [v["id"] for v in predictions] or metrics.get("batch_size") != 4 or metrics.get("with_definitions") is not guided:
+                raise ValueError("Baseline prediction identities or decoding policy differ")
+            recomputed = score(rows, predictions)
+            if any(metrics[key] != value for key, value in recomputed.items()):
+                raise ValueError("Baseline recorded scores do not match its predictions")
+            for path in (metrics_path, predictions_path): hashes[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+        shutil.copytree(a.baseline_suite / "old-validation", a.output / "old-validation")
+        write(a.output / "reused-baselines.json", {"previous_suite": str(a.baseline_suite), "files_sha256": hashes,
+            "validation_only": True, "fresh_confirmation_still_sealed": True})
+        state("reused_verified_v1_validation_baselines")
+    else:
+        evaluate_plan([{"name": "v1-basic-validation", "adapter": str(a.old_adapter), "with_definitions": False},
+                       {"name": "v1-guided-validation", "adapter": str(a.old_adapter), "with_definitions": True}], "validation", "old-validation")
     old_metrics = [read(a.output / "old-validation" / (n + "-metrics.json")) for n in ("v1-basic-validation", "v1-guided-validation")]
     candidates = [("candidate-a", config), ("candidate-b", {**config, "rank": 16, "alpha": 32, "learning_rate": 1e-4, "epochs": 1})]
     selected = None; trials = []

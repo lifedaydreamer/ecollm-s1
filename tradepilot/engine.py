@@ -85,7 +85,7 @@ def extract(doc):
         for warning in warnings:
             if warning not in doc.setdefault("warnings", []):
                 doc["warnings"].append(warning)
-        if any("账期表述为范围" in warning for warning in warnings):
+        if any("账期表述为范围" in warning or "账期使用工作日" in warning for warning in warnings):
             facts = [f for f in facts if f["evidence"]["block_id"] != block["id"] or f["field"] not in {"payment_days", "payment_trigger"}]
         for candidate in candidates:
             try:

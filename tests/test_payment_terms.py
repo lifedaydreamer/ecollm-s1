@@ -20,7 +20,10 @@ def test_ambiguous_payment_values_are_not_inferred():
                  "Payment terms: refund of 30% deposit.",
                  "Balance payable up to 60 days after shipment.",
                  "Balance payable 30-60 days after shipment.",
-                 "Interest payable 30 days after invoice."):
+                 "Interest payable 30 days after invoice.",
+                 "Payment terms: Deposit: 20%-30%.",
+                 "Payment days: 30-60 days.",
+                 "Payment days: 30 business days after shipment."):
         doc = document(text); doc["facts"] = extract(doc)
         assert not unique_fact(doc, "deposit_percent") and not unique_fact(doc, "payment_days")
     doc = document("Payment terms: deposit of 30%; a prepayment of 50% is also stated.")

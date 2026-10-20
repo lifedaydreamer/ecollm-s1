@@ -180,3 +180,5 @@ npm run build
 让原文、判断与决定，保持在同一条证据链上。
 
 </div>
+
+实验模型已发布：[下载 CUAD 专项模型复现包](https://github.com/lifedaydreamer/ecollm-s1/releases/tag/model-cuad-pilot-v0.1.0)。请选择具名附件 `TradePilot-CUAD-Pilot-v0.1.0.zip`，解压后阅读 `START_MODEL_HERE.md`；包内含 Adapter、训练模块和真实记录。基座需自行准备，业务默认模型尚未替换。GitHub 自动生成的 Source code 包关联旧应用基线，完整训练复现以具名附件为准。

@@ -119,3 +119,9 @@
 5. 补齐模型卡、数据卡、使用指南、模型对照报告与演示视频；报名与成果复用以竞赛正式规则为准。
 
 本轮源码新增模块后的 22 项工程测试、28 场景业务回归通过；GPU 试训与公开数据评测是独立路径，分开报告。
+
+## 9. 下载
+
+[公开实验模型包与说明](https://github.com/lifedaydreamer/ecollm-s1/releases/tag/model-cuad-pilot-v0.1.0)。请选择具名附件 `TradePilot-CUAD-Pilot-v0.1.0.zip`，包含完整训练源码、冻结数据、实际 Adapter 和原始预测。包内 `BUNDLE_MANIFEST.json` 可核验各文件。ZIP SHA-256：`e332caa77b1a37ecc2ea62804685d5fb78da07d13c715d269b163887a7e4cbde`。
+
+具名附件的训练源码及报告快照对应提交 `0d062a0cc0d951a08588e6f3e16441dbcb4ee21c`。发布 Git 标签关联应用基线 `a7a283f`；GitHub 自动 Source code 压缩包不含新增训练模块，请使用具名附件复现。

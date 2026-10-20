@@ -157,10 +157,14 @@
     "README.md": "05f64356755c6524b6d78c7c606b1a0e85959c2a63f14c86ca0c56ccb36b9cb5"
   },
   "report": "docs/TRAINING_REPORT.md",
-  "download_url": null,
+  "download_url": "https://github.com/lifedaydreamer/ecollm-s1/releases/download/model-cuad-pilot-v0.1.0/TradePilot-CUAD-Pilot-v0.1.0.zip",
   "notes": [
     "Experimental evidence extraction; not a trade-risk model",
     "Requires a separately obtained matching Qwen base",
     "No default Agent model replacement"
-  ]
+  ],
+  "bundle_sha256": "e332caa77b1a37ecc2ea62804685d5fb78da07d13c715d269b163887a7e4cbde",
+  "bundle_bytes": 22616857,
+  "source_snapshot_commit": "0d062a0cc0d951a08588e6f3e16441dbcb4ee21c",
+  "release_tag_app_baseline": "a7a283f9d2eca54d3153bdd24c964cc2f157d53e"
 }

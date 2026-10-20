@@ -19,3 +19,9 @@ checkpoints/
 artifacts/
 data/generated/
 .download-venv/
+
+# Independent training experiments and licensed raw corpora
+.train-venv/
+experiments/
+data/source/
+data/cuad-pilot*/

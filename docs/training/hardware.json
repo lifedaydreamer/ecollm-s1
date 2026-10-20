@@ -1,0 +1,6 @@
+{
+  "gpu_report": "NVIDIA A100-SXM4-80GB, 81920 MiB, 565.57.01",
+  "training_cpu_threads": 2,
+  "training_device_count": 1,
+  "memory_fraction": 0.7
+}

@@ -1,0 +1,308 @@
+{
+  "split": "validation",
+  "n": 54,
+  "source_families": 34,
+  "base": {
+    "n": 54,
+    "schema_valid_rate": 1.0,
+    "all_quotes_grounded_rate": 0.8518518518518519,
+    "exact_span_set_match_rate": 0.3333333333333333,
+    "mean_evidence_token_f1": 0.6096756716752438,
+    "clause_presence_macro_f1": 0.5851851851851851,
+    "per_category": {
+      "Cap On Liability": {
+        "n": 6,
+        "fn": 3,
+        "tp": 1,
+        "presence_f1": 0.4
+      },
+      "Uncapped Liability": {
+        "n": 6,
+        "fn": 4,
+        "presence_f1": 0.0
+      },
+      "Liquidated Damages": {
+        "n": 6,
+        "tp": 2,
+        "fn": 2,
+        "presence_f1": 0.6666666666666666
+      },
+      "Warranty Duration": {
+        "n": 6,
+        "fn": 3,
+        "tp": 1,
+        "presence_f1": 0.4
+      },
+      "Insurance": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Audit Rights": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Termination For Convenience": {
+        "n": 6,
+        "fn": 3,
+        "tp": 1,
+        "presence_f1": 0.4
+      },
+      "Governing Law": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Minimum Commitment": {
+        "n": 6,
+        "fn": 3,
+        "tp": 1,
+        "presence_f1": 0.4
+      }
+    },
+    "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success."
+  },
+  "adapter": {
+    "n": 54,
+    "schema_valid_rate": 1.0,
+    "all_quotes_grounded_rate": 0.9629629629629629,
+    "exact_span_set_match_rate": 0.7222222222222222,
+    "mean_evidence_token_f1": 0.8411369473076957,
+    "clause_presence_macro_f1": 0.9228395061728395,
+    "per_category": {
+      "Cap On Liability": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Uncapped Liability": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Liquidated Damages": {
+        "n": 6,
+        "tp": 4,
+        "fp": 1,
+        "presence_f1": 0.8888888888888888
+      },
+      "Warranty Duration": {
+        "n": 6,
+        "tp": 2,
+        "fn": 2,
+        "presence_f1": 0.6666666666666666
+      },
+      "Insurance": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Audit Rights": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Termination For Convenience": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Governing Law": {
+        "n": 6,
+        "tp": 4,
+        "presence_f1": 1.0
+      },
+      "Minimum Commitment": {
+        "n": 6,
+        "fn": 1,
+        "tp": 3,
+        "fp": 1,
+        "presence_f1": 0.75
+      }
+    },
+    "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success."
+  },
+  "per_emitted_quote_grounding": {
+    "base": {
+      "emitted": 18,
+      "matched": 10,
+      "verified_quote_rate": 0.5555555555555556
+    },
+    "adapter": {
+      "emitted": 35,
+      "matched": 33,
+      "verified_quote_rate": 0.9428571428571428
+    }
+  },
+  "evidence_f1_gain": 0.2314612756324519,
+  "paired_source_family_bootstrap_95pct_ci": [
+    0.11246957540464853,
+    0.35931671216768984
+  ],
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 20261020,
+  "input_sha256": "f27a45c7719a35391b91772693bf53f95f240440c8869333f58973725ea633e2",
+  "improved_cases": 25,
+  "regressed_cases": 7,
+  "unchanged_cases": 22,
+  "weakest_cases": [
+    {
+      "id": "6f8f0ba8836f258eaf7d5477",
+      "family": "foundationmedicineinc",
+      "category": "Liquidated Damages",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "FOUNDATIONMEDICINE,INC_02_02_2015-EX-10.2-Collaboration Agreement__Liquidated Damages"
+    },
+    {
+      "id": "163ce76b9335b0a931486807",
+      "family": "niceltd",
+      "category": "Minimum Commitment",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "NICELTD_06_26_2003-EX-4.5-OUTSOURCING AGREEMENT__Minimum Commitment"
+    },
+    {
+      "id": "082e9e7c12ee5b41d77038a2",
+      "family": "zoundshearingincmanufacturingdesignmarketingagreement",
+      "category": "Warranty Duration",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "Zounds Hearing, Inc. - MANUFACTURING DESIGN MARKETING AGREEMENT__Warranty Duration"
+    },
+    {
+      "id": "f8f4a47068b41da3da54c6c0",
+      "family": "arraybiopharmainclicensedevelopmentandcommercializationagreement",
+      "category": "Warranty Duration",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "Array BioPharma Inc. - LICENSE, DEVELOPMENT AND COMMERCIALIZATION AGREEMENT__Warranty Duration"
+    },
+    {
+      "id": "beb17a14d12a8fb5c32f88e9",
+      "family": "summafourinc",
+      "category": "Minimum Commitment",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "SUMMAFOURINC_06_19_1998-EX-10.3-SOFTWARE LICENSE AND MAINTENANCE AGREEMENT__Minimum Commitment"
+    },
+    {
+      "id": "f1874b9ba081825914b17a2d",
+      "family": "ipassinc",
+      "category": "Minimum Commitment",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.127208480565371,
+      "delta": 0.127208480565371,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "IpassInc_20181203_8-K_EX-99.1_11445874_EX-99.1_Reseller Agreement__Minimum Commitment"
+    },
+    {
+      "id": "13fc125dbdc1ec166267b738",
+      "family": "etelosinc",
+      "category": "Termination For Convenience",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.3333333333333333,
+      "delta": 0.3333333333333333,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "ETELOS,INC_03_09_2004-EX-10.8-DISTRIBUTOR AGREEMENT__Termination For Convenience"
+    },
+    {
+      "id": "65f0e4d9cca3cb46bf82a560",
+      "family": "arraybiopharmainclicensedevelopmentandcommercializationagreement",
+      "category": "Audit Rights",
+      "base_token_f1": 0.8235294117647058,
+      "adapter_token_f1": 0.47580645161290325,
+      "delta": -0.3477229601518026,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "Array BioPharma Inc. - LICENSE, DEVELOPMENT AND COMMERCIALIZATION AGREEMENT__Audit Rights"
+    }
+  ],
+  "regressions": [
+    {
+      "id": "6f8f0ba8836f258eaf7d5477",
+      "family": "foundationmedicineinc",
+      "category": "Liquidated Damages",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "FOUNDATIONMEDICINE,INC_02_02_2015-EX-10.2-Collaboration Agreement__Liquidated Damages"
+    },
+    {
+      "id": "163ce76b9335b0a931486807",
+      "family": "niceltd",
+      "category": "Minimum Commitment",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "NICELTD_06_26_2003-EX-4.5-OUTSOURCING AGREEMENT__Minimum Commitment"
+    },
+    {
+      "id": "c19708d7a35c8f82a3f5f5a8",
+      "family": "gocallinc",
+      "category": "Audit Rights",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.5714285714285714,
+      "delta": -0.4285714285714286,
+      "adapter_quotes_grounded": false,
+      "annotation_id": "GOCALLINC_03_30_2000-EX-10.7-Promotion Agreement__Audit Rights"
+    },
+    {
+      "id": "65f0e4d9cca3cb46bf82a560",
+      "family": "arraybiopharmainclicensedevelopmentandcommercializationagreement",
+      "category": "Audit Rights",
+      "base_token_f1": 0.8235294117647058,
+      "adapter_token_f1": 0.47580645161290325,
+      "delta": -0.3477229601518026,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "Array BioPharma Inc. - LICENSE, DEVELOPMENT AND COMMERCIALIZATION AGREEMENT__Audit Rights"
+    },
+    {
+      "id": "0111da5f28612ee76ebae1ce",
+      "family": "zogenixinc",
+      "category": "Insurance",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.7096774193548387,
+      "delta": -0.29032258064516125,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "ZogenixInc_20190509_10-Q_EX-10.2_11663313_EX-10.2_Distributor Agreement__Insurance"
+    },
+    {
+      "id": "dae62565e381aeca960a3377",
+      "family": "optimizedtransportationmanagementinc",
+      "category": "Governing Law",
+      "base_token_f1": 0.9066666666666666,
+      "adapter_token_f1": 0.64,
+      "delta": -0.2666666666666666,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "OPTIMIZEDTRANSPORTATIONMANAGEMENT,INC_07_26_2000-EX-6.6-DISTRIBUTOR AGREEMENT__Governing Law"
+    },
+    {
+      "id": "62b4ef357889c4cf5c6205e6",
+      "family": "kalloinc",
+      "category": "Insurance",
+      "base_token_f1": 0.8027210884353742,
+      "adapter_token_f1": 0.7719298245614035,
+      "delta": -0.030791263873970687,
+      "adapter_quotes_grounded": false,
+      "annotation_id": "KALLOINC_11_03_2011-EX-10.1-STRATEGIC ALLIANCE AGREEMENT__Insurance"
+    }
+  ],
+  "limitations": [
+    "Confidence interval describes this filtered public-data subset, not random-seed variability or real trade effectiveness",
+    "One training seed; fixed basic prompt; no optimized-prompt baseline yet",
+    "JSON validity is measured after the same decoding constraints in both models"
+  ]
+}

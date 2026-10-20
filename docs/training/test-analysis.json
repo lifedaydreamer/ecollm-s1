@@ -1,0 +1,375 @@
+{
+  "split": "test",
+  "n": 72,
+  "source_families": 43,
+  "base": {
+    "n": 72,
+    "schema_valid_rate": 1.0,
+    "all_quotes_grounded_rate": 0.9444444444444444,
+    "exact_span_set_match_rate": 0.3888888888888889,
+    "mean_evidence_token_f1": 0.5805313850234203,
+    "clause_presence_macro_f1": 0.5831569664902998,
+    "per_category": {
+      "Cap On Liability": {
+        "n": 8,
+        "tp": 3,
+        "fn": 2,
+        "presence_f1": 0.75
+      },
+      "Uncapped Liability": {
+        "n": 8,
+        "fn": 5,
+        "presence_f1": 0.0
+      },
+      "Liquidated Damages": {
+        "n": 8,
+        "fn": 3,
+        "tp": 2,
+        "presence_f1": 0.5714285714285714
+      },
+      "Warranty Duration": {
+        "n": 8,
+        "tp": 2,
+        "fn": 3,
+        "presence_f1": 0.5714285714285714
+      },
+      "Insurance": {
+        "n": 8,
+        "tp": 4,
+        "fn": 1,
+        "presence_f1": 0.8888888888888888
+      },
+      "Audit Rights": {
+        "n": 8,
+        "tp": 4,
+        "fn": 1,
+        "fp": 1,
+        "presence_f1": 0.8
+      },
+      "Termination For Convenience": {
+        "n": 8,
+        "fn": 4,
+        "tp": 1,
+        "presence_f1": 0.3333333333333333
+      },
+      "Governing Law": {
+        "n": 8,
+        "tp": 5,
+        "presence_f1": 1.0
+      },
+      "Minimum Commitment": {
+        "n": 8,
+        "tp": 1,
+        "fn": 4,
+        "presence_f1": 0.3333333333333333
+      }
+    },
+    "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success."
+  },
+  "adapter": {
+    "n": 72,
+    "schema_valid_rate": 1.0,
+    "all_quotes_grounded_rate": 0.9583333333333334,
+    "exact_span_set_match_rate": 0.5972222222222222,
+    "mean_evidence_token_f1": 0.730011403503009,
+    "clause_presence_macro_f1": 0.8865881032547699,
+    "per_category": {
+      "Cap On Liability": {
+        "n": 8,
+        "tp": 4,
+        "fn": 1,
+        "presence_f1": 0.8888888888888888
+      },
+      "Uncapped Liability": {
+        "n": 8,
+        "tp": 5,
+        "fp": 1,
+        "presence_f1": 0.9090909090909091
+      },
+      "Liquidated Damages": {
+        "n": 8,
+        "tp": 4,
+        "fn": 1,
+        "fp": 1,
+        "presence_f1": 0.8
+      },
+      "Warranty Duration": {
+        "n": 8,
+        "tp": 4,
+        "fn": 1,
+        "presence_f1": 0.8888888888888888
+      },
+      "Insurance": {
+        "n": 8,
+        "tp": 5,
+        "fp": 1,
+        "presence_f1": 0.9090909090909091
+      },
+      "Audit Rights": {
+        "n": 8,
+        "tp": 5,
+        "fp": 2,
+        "presence_f1": 0.8333333333333334
+      },
+      "Termination For Convenience": {
+        "n": 8,
+        "tp": 5,
+        "presence_f1": 1.0
+      },
+      "Governing Law": {
+        "n": 8,
+        "tp": 5,
+        "presence_f1": 1.0
+      },
+      "Minimum Commitment": {
+        "n": 8,
+        "tp": 3,
+        "fn": 2,
+        "presence_f1": 0.75
+      }
+    },
+    "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success."
+  },
+  "per_emitted_quote_grounding": {
+    "base": {
+      "emitted": 24,
+      "matched": 20,
+      "verified_quote_rate": 0.8333333333333334
+    },
+    "adapter": {
+      "emitted": 45,
+      "matched": 42,
+      "verified_quote_rate": 0.9333333333333333
+    }
+  },
+  "evidence_f1_gain": 0.1494800184795887,
+  "paired_source_family_bootstrap_95pct_ci": [
+    0.04764998958279294,
+    0.25299106823279605
+  ],
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 20261020,
+  "input_sha256": "a2e8d6d443e173bbdea29a20cc3f049ea08e6bbda24ab5450484c0870fcb5e04",
+  "improved_cases": 28,
+  "regressed_cases": 13,
+  "unchanged_cases": 31,
+  "weakest_cases": [
+    {
+      "id": "3b496dd6dff097beb7d3dd3a",
+      "family": "pacirapharmaceuticalsinca",
+      "category": "Uncapped Liability",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": false,
+      "annotation_id": "PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT __Uncapped Liability"
+    },
+    {
+      "id": "e98d4b2951087f2f4add3242",
+      "family": "n2kinc",
+      "category": "Liquidated Damages",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "N2KINC_10_16_1997-EX-10.16-SPONSORSHIP AGREEMENT__Liquidated Damages"
+    },
+    {
+      "id": "e30ce30ac4209c068895497d",
+      "family": "gpaqacquisitionholdingsinc",
+      "category": "Insurance",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "GpaqAcquisitionHoldingsInc_20200123_S-4A_EX-10.8_11951679_EX-10.8_Service Agreement__Insurance"
+    },
+    {
+      "id": "334b3b74abf56f47a18f0675",
+      "family": "gooseheadinsuranceinc",
+      "category": "Audit Rights",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "GOOSEHEADINSURANCE,INC_04_02_2018-EX-10.6-Franchise Agreement__Audit Rights"
+    },
+    {
+      "id": "c3b316051a099232acde14a1",
+      "family": "dovapharmaceuticalsinc",
+      "category": "Cap On Liability",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "DovaPharmaceuticalsInc_20181108_10-Q_EX-10.2_11414857_EX-10.2_Promotion Agreement__Cap On Liability"
+    },
+    {
+      "id": "013bb0b6a7710b466cbb643f",
+      "family": "teardropgolfco",
+      "category": "Liquidated Damages",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "TEARDROPGOLFCO_10_23_1996-EX-10.12-ENDORSEMENT AGREEMENT__Liquidated Damages"
+    },
+    {
+      "id": "1f0f64cb7cd72c2462b74ba5",
+      "family": "hemispherxsalesmarketingdistributionandsupplyagreement",
+      "category": "Warranty Duration",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement__Warranty Duration"
+    },
+    {
+      "id": "9beef13bb4349322ddc731e9",
+      "family": "impcotechnologiesinc",
+      "category": "Audit Rights",
+      "base_token_f1": 0.0,
+      "adapter_token_f1": 0.0,
+      "delta": 0.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "IMPCOTECHNOLOGIESINC_04_15_2003-EX-10.65-JOINT VENTURE AGREEMENT__Audit Rights"
+    }
+  ],
+  "regressions": [
+    {
+      "id": "3b496dd6dff097beb7d3dd3a",
+      "family": "pacirapharmaceuticalsinca",
+      "category": "Uncapped Liability",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": false,
+      "annotation_id": "PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT __Uncapped Liability"
+    },
+    {
+      "id": "e98d4b2951087f2f4add3242",
+      "family": "n2kinc",
+      "category": "Liquidated Damages",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "N2KINC_10_16_1997-EX-10.16-SPONSORSHIP AGREEMENT__Liquidated Damages"
+    },
+    {
+      "id": "e30ce30ac4209c068895497d",
+      "family": "gpaqacquisitionholdingsinc",
+      "category": "Insurance",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "GpaqAcquisitionHoldingsInc_20200123_S-4A_EX-10.8_11951679_EX-10.8_Service Agreement__Insurance"
+    },
+    {
+      "id": "334b3b74abf56f47a18f0675",
+      "family": "gooseheadinsuranceinc",
+      "category": "Audit Rights",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.0,
+      "delta": -1.0,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "GOOSEHEADINSURANCE,INC_04_02_2018-EX-10.6-Franchise Agreement__Audit Rights"
+    },
+    {
+      "id": "27af3a4b0d3619e9ab339969",
+      "family": "paperexchangecominc",
+      "category": "Liquidated Damages",
+      "base_token_f1": 0.9818181818181818,
+      "adapter_token_f1": 0.14965986394557823,
+      "delta": -0.8321583178726035,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "PaperexchangeComInc_20000322_S-1A_EX-10.4_5202103_EX-10.4_Co-Branding Agreement__Liquidated Damages"
+    },
+    {
+      "id": "23c7e6cf7e95729e398a4f19",
+      "family": "ritterpharmaceuticalsinc",
+      "category": "Insurance",
+      "base_token_f1": 0.9122807017543859,
+      "adapter_token_f1": 0.3474903474903475,
+      "delta": -0.5647903542640385,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "RitterPharmaceuticalsInc_20200313_S-4A_EX-10.54_12055220_EX-10.54_Development Agreement__Insurance"
+    },
+    {
+      "id": "5504e6f13d89c9a46dfde549",
+      "family": "vapothermincmanufacturingandsupplyagreement",
+      "category": "Insurance",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.5043478260869565,
+      "delta": -0.4956521739130435,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "VAPOTHERM, INC. - Manufacturing and Supply Agreement__Insurance"
+    },
+    {
+      "id": "cf463d3a84a3e68656e22dc4",
+      "family": "hemispherxsalesmarketingdistributionandsupplyagreement",
+      "category": "Audit Rights",
+      "base_token_f1": 0.9861111111111112,
+      "adapter_token_f1": 0.6728971962616822,
+      "delta": -0.31321391484942895,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "HEMISPHERX - Sales, Marketing, Distribution, and Supply Agreement__Audit Rights"
+    },
+    {
+      "id": "2a283ab861a8c04d696b2d91",
+      "family": "ambassadoreyeweargroupinc",
+      "category": "Insurance",
+      "base_token_f1": 0.7435387673956262,
+      "adapter_token_f1": 0.5503875968992248,
+      "delta": -0.1931511704964014,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "AMBASSADOREYEWEARGROUPINC_11_17_1997-EX-10.28-ENDORSEMENT AGREEMENT__Insurance"
+    },
+    {
+      "id": "1586823ac6df86c597208c6d",
+      "family": "trizettogroupinc",
+      "category": "Warranty Duration",
+      "base_token_f1": 0.36363636363636365,
+      "adapter_token_f1": 0.19753086419753085,
+      "delta": -0.1661054994388328,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT__Warranty Duration"
+    },
+    {
+      "id": "86fd393f5b469b9a47d67552",
+      "family": "westpharmaceuticalservicesinc",
+      "category": "Cap On Liability",
+      "base_token_f1": 0.8524590163934426,
+      "adapter_token_f1": 0.7469879518072289,
+      "delta": -0.10547106458621369,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "WestPharmaceuticalServicesInc_20200116_8-K_EX-10.1_11947529_EX-10.1_Supply Agreement__Cap On Liability"
+    },
+    {
+      "id": "99030264af1a17a1b115a8c7",
+      "family": "womensgolfunlimitedinc",
+      "category": "Insurance",
+      "base_token_f1": 1.0,
+      "adapter_token_f1": 0.9,
+      "delta": -0.09999999999999998,
+      "adapter_quotes_grounded": true,
+      "annotation_id": "WOMENSGOLFUNLIMITEDINC_03_29_2000-EX-10.13-ENDORSEMENT AGREEMENT__Insurance"
+    },
+    {
+      "id": "1d54c5f43e936f0c862459eb",
+      "family": "paperexchangecominc",
+      "category": "Audit Rights",
+      "base_token_f1": 0.5038961038961038,
+      "adapter_token_f1": 0.4459770114942529,
+      "delta": -0.05791909240185095,
+      "adapter_quotes_grounded": false,
+      "annotation_id": "PaperexchangeComInc_20000322_S-1A_EX-10.4_5202103_EX-10.4_Co-Branding Agreement__Audit Rights"
+    }
+  ],
+  "limitations": [
+    "Confidence interval describes this filtered public-data subset, not random-seed variability or real trade effectiveness",
+    "One training seed; fixed basic prompt; no optimized-prompt baseline yet",
+    "JSON validity is measured after the same decoding constraints in both models"
+  ]
+}

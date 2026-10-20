@@ -1,0 +1,7 @@
+{
+  "adapter_reload": "passed",
+  "device": "cpu",
+  "logits_finite": true,
+  "max_logit_change_from_base": 0.9765625,
+  "rank": 16
+}

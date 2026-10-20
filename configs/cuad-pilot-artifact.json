@@ -1,0 +1,170 @@
+{
+  "model_name": "TradePilot-Clause-4B-CUAD-Pilot-v1",
+  "status": "experimental_clause_extraction_not_default_agent",
+  "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "adapter_weights_sha256": "cc9ac3bcdae80bf41781df2d2ba1a77ff5a58ca1302385853e35222734ec3607",
+  "adapter_bytes": 23612264,
+  "trainable_parameters": 5898240,
+  "input_task": "one requested CUAD clause category and English excerpt",
+  "entrypoint": "ml/predict_clause.py",
+  "categories": [
+    "Cap On Liability",
+    "Uncapped Liability",
+    "Liquidated Damages",
+    "Warranty Duration",
+    "Insurance",
+    "Audit Rights",
+    "Termination For Convenience",
+    "Governing Law",
+    "Minimum Commitment"
+  ],
+  "seed": 42,
+  "test_samples": 72,
+  "test_families": 43,
+  "metrics": {
+    "base": {
+      "n": 72,
+      "schema_valid_rate": 1.0,
+      "all_quotes_grounded_rate": 0.9444444444444444,
+      "exact_span_set_match_rate": 0.3888888888888889,
+      "mean_evidence_token_f1": 0.5805313850234203,
+      "clause_presence_macro_f1": 0.5831569664902998,
+      "per_category": {
+        "Cap On Liability": {
+          "n": 8,
+          "tp": 3,
+          "fn": 2,
+          "presence_f1": 0.75
+        },
+        "Uncapped Liability": {
+          "n": 8,
+          "fn": 5,
+          "presence_f1": 0.0
+        },
+        "Liquidated Damages": {
+          "n": 8,
+          "fn": 3,
+          "tp": 2,
+          "presence_f1": 0.5714285714285714
+        },
+        "Warranty Duration": {
+          "n": 8,
+          "tp": 2,
+          "fn": 3,
+          "presence_f1": 0.5714285714285714
+        },
+        "Insurance": {
+          "n": 8,
+          "tp": 4,
+          "fn": 1,
+          "presence_f1": 0.8888888888888888
+        },
+        "Audit Rights": {
+          "n": 8,
+          "tp": 4,
+          "fn": 1,
+          "fp": 1,
+          "presence_f1": 0.8
+        },
+        "Termination For Convenience": {
+          "n": 8,
+          "fn": 4,
+          "tp": 1,
+          "presence_f1": 0.3333333333333333
+        },
+        "Governing Law": {
+          "n": 8,
+          "tp": 5,
+          "presence_f1": 1.0
+        },
+        "Minimum Commitment": {
+          "n": 8,
+          "tp": 1,
+          "fn": 4,
+          "presence_f1": 0.3333333333333333
+        }
+      },
+      "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success."
+    },
+    "adapter": {
+      "n": 72,
+      "schema_valid_rate": 1.0,
+      "all_quotes_grounded_rate": 0.9583333333333334,
+      "exact_span_set_match_rate": 0.5972222222222222,
+      "mean_evidence_token_f1": 0.730011403503009,
+      "clause_presence_macro_f1": 0.8865881032547699,
+      "per_category": {
+        "Cap On Liability": {
+          "n": 8,
+          "tp": 4,
+          "fn": 1,
+          "presence_f1": 0.8888888888888888
+        },
+        "Uncapped Liability": {
+          "n": 8,
+          "tp": 5,
+          "fp": 1,
+          "presence_f1": 0.9090909090909091
+        },
+        "Liquidated Damages": {
+          "n": 8,
+          "tp": 4,
+          "fn": 1,
+          "fp": 1,
+          "presence_f1": 0.8
+        },
+        "Warranty Duration": {
+          "n": 8,
+          "tp": 4,
+          "fn": 1,
+          "presence_f1": 0.8888888888888888
+        },
+        "Insurance": {
+          "n": 8,
+          "tp": 5,
+          "fp": 1,
+          "presence_f1": 0.9090909090909091
+        },
+        "Audit Rights": {
+          "n": 8,
+          "tp": 5,
+          "fp": 2,
+          "presence_f1": 0.8333333333333334
+        },
+        "Termination For Convenience": {
+          "n": 8,
+          "tp": 5,
+          "presence_f1": 1.0
+        },
+        "Governing Law": {
+          "n": 8,
+          "tp": 5,
+          "presence_f1": 1.0
+        },
+        "Minimum Commitment": {
+          "n": 8,
+          "tp": 3,
+          "fn": 2,
+          "presence_f1": 0.75
+        }
+      },
+      "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success."
+    }
+  },
+  "raw_adapter_files": {
+    "adapter_config.json": "359a2663ba547473f7a6b326cc1bc51c5ff4d91c2ad17eef522746f4f5b50a9b",
+    "adapter_model.safetensors": "cc9ac3bcdae80bf41781df2d2ba1a77ff5a58ca1302385853e35222734ec3607",
+    "README.md": "05f64356755c6524b6d78c7c606b1a0e85959c2a63f14c86ca0c56ccb36b9cb5"
+  },
+  "report": "docs/TRAINING_REPORT.md",
+  "download_url": "https://github.com/lifedaydreamer/ecollm-s1/releases/download/model-cuad-pilot-v0.1.0/TradePilot-CUAD-Pilot-v0.1.0.zip",
+  "notes": [
+    "Experimental evidence extraction; not a trade-risk model",
+    "Requires a separately obtained matching Qwen base",
+    "No default Agent model replacement"
+  ],
+  "bundle_sha256": "e332caa77b1a37ecc2ea62804685d5fb78da07d13c715d269b163887a7e4cbde",
+  "bundle_bytes": 22616857,
+  "source_snapshot_commit": "0d062a0cc0d951a08588e6f3e16441dbcb4ee21c",
+  "release_tag_app_baseline": "a7a283f9d2eca54d3153bdd24c964cc2f157d53e"
+}

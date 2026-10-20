@@ -1,0 +1,50 @@
+{
+  "record": {
+    "id": "9def7cb857635a8141c0be4d",
+    "split": "validation",
+    "input": {
+      "category": "Uncapped Liability",
+      "text": "s of any material term of this Agreement; and     (ii) any claim by a Rogers customer, except a claim related to the content of any Licensed Program, trailer and/or other promotional materials provided by Licensor to Rogers hereunder.     (c) This Section shall survive the termination or expiration of this Agreement.     16. LIMITATION OF LIABILITY.   Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind. This Section shall survive the termination or expiration of this Agreement.     17. COPYRIGHT ROYALTY PAYMENTS.   For so long as Rogers is required by Applicable Law to pay copyright royalties relating to Licensed Programs hereunder, Licensor shall reimburse Rogers for 50% of any such royalties actually paid by Rogers, calculated on a rolling basis during the Term and payable monthly. This Section shall survive the termination or expiration of this Agreement.     18. ROGERS' TERMINATION RIGHTS.   Notwithstanding any other provision of this Agreement, Rogers may terminate this Agreement, at any time, upon sixty (60) days' prior written notice to Licensor.     19. MUTUAL TERMINATION RIGHTS.   Either Rogers or Licensor may, at its option and without prejudice to any other remedies available to it, immediately terminate this Agreement by giving written notice thereof to the other party for any one or more of the following causes:     (a) the other party defaults in the performance or o"
+    },
+    "target": {
+      "status": "found",
+      "evidence": [
+        "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind."
+      ]
+    },
+    "source": {
+      "dataset": "CUAD v1",
+      "title": "EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement",
+      "family": "euromediaholdingscorp",
+      "start": 15600,
+      "end": 17200,
+      "annotation_id": "EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B(01)_525118_EX-10.B(01)_Content License Agreement__Uncapped Liability",
+      "license": "CC-BY-4.0",
+      "annotation_origin": "upstream_expert_spans_preserved"
+    },
+    "context_hash": "da9764c6dbd718de3c9ac89050083067a6ad9250beac80d7ae00a658cafbb760"
+  },
+  "base": {
+    "id": "9def7cb857635a8141c0be4d",
+    "raw": "{\n  \"status\": \"not_found_in_excerpt\",\n  \"evidence\": []\n}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  "adapter": {
+    "id": "9def7cb857635a8141c0be4d",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind."
+      ]
+    }
+  },
+  "selection": "Illustrative corrected validation miss; deliberately selected, not overall performance"
+}

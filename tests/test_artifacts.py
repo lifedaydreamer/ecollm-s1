@@ -40,6 +40,12 @@ def test_bundle_installs_only_pinned_files_and_preserves_existing_directory(tmp_
         module.install_bundle(bundle, output, manifest)
     with pytest.raises(ValueError, match="cannot serve"):
         artifacts.reject_clause_adapter_for_business(output)
+    monkeypatch.setenv("TRADEPILOT_MODEL_PATH", str(tmp_path / "unused-base"))
+    monkeypatch.setenv("TRADEPILOT_MODEL_TOKEN", "test")
+    monkeypatch.setenv("TRADEPILOT_ADAPTER_PATH", str(output))
+    from tradepilot.model_server import app_factory
+    with pytest.raises(ValueError, match="cannot serve"):
+        app_factory()  # Refused before importing Torch or entering GPU lifespan.
     (output / "adapter_model.safetensors").write_bytes(b"tampered")
     with pytest.raises(ValueError, match="mismatch"):
         artifacts.verify_clause_adapter(output)

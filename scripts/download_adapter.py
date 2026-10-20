@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 import sys
 import tempfile
+from urllib.error import URLError
 from urllib.request import urlopen
 from zipfile import ZipFile
 
@@ -83,5 +84,7 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    except (URLError, TimeoutError) as exc:
+        raise SystemExit("GitHub download unavailable or timed out. Download the named ZIP from the release page in a browser, then use --bundle /path/to/TradePilot-CUAD-Pilot-v0.1.0.zip. Original error: " + str(exc)) from exc
     except (ValueError, OSError) as exc:
         raise SystemExit(str(exc)) from exc

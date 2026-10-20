@@ -135,7 +135,7 @@ python3 scripts/download_adapter.py --output adapters/cuad-pilot-v1
 python3 scripts/download_adapter.py --output adapters/cuad-pilot-v1 --verify-only
 ```
 
-下载工具只获取约 22.6MB 的已发布 ZIP，逐项校验后安装 Adapter 和许可，不下载基座、不启动 GPU、不覆盖已有目录。已有 ZIP 可追加 `--bundle /path/to/TradePilot-CUAD-Pilot-v0.1.0.zip` 离线安装。在自己的服务器准备匹配基座和推理依赖后，通过独立入口运行：
+下载工具只获取约 22.6MB 的已发布 ZIP，逐项校验后安装 Adapter 和许可，不下载基座、不启动 GPU、不覆盖已有目录。服务器无法访问 GitHub 或下载超时时，可在浏览器下载具名 ZIP，传到服务器后追加 `--bundle /path/to/TradePilot-CUAD-Pilot-v0.1.0.zip` 离线安装；校验强度相同。在自己的服务器准备匹配基座和推理依赖后，通过独立入口运行：
 
 ```bash
 python3 scripts/gpu_guard.py --gpu GPU-替换为完整UUID -- \

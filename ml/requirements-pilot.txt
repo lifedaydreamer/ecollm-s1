@@ -1,0 +1,9 @@
+# Install torch==2.9.1 from the official cu126 index separately.
+# Runtime snapshot used by the isolated pilot; Linux / NVIDIA GPU.
+transformers==4.57.3
+peft==0.21.2
+accelerate==1.15.0
+lm-format-enforcer==0.11.3
+huggingface-hub==0.36.2
+tokenizers==0.22.2
+safetensors==0.8.0

@@ -79,7 +79,7 @@ python3 scripts/demo.py start \
 
 请把示例路径和 UUID 换成真实值。启动器先检查指定 GPU，发现已有计算进程会拒绝加载；不自动换卡，也不会停止别人的任务。训练和推理仍应使用管理员或调度器分配的资源。
 
-后续有自己的专业 Adapter 时，在命令后追加 `--adapter /absolute/path/adapter` 即可加载。**当前仓库没有虚构或占位的“已训练权重”。** 大模型由官方源获取，仓库保存代码、模型文件哈希与运行配置。
+有使用相同 `extract/review/compare` 输入输出格式并通过业务验收的 Adapter 时，可以追加 `--adapter /absolute/path/adapter`。本项目已发布的 **CUAD 实验 Adapter 使用另一种条款抽取格式，不能通过此选项加载**；业务模型服务会拒绝误加载。其独立使用方式见下方“专业模型试训”。大模型由官方源获取，仓库保存代码、模型文件哈希与运行配置。
 
 相同代码、权重、输入和参数用于尽量复现结果；生成结果可能受硬件、依赖和执行时限影响，不能承诺跨设备逐字一致。规则模式的三个预览案例有 CI 一致性校验。
 
@@ -128,11 +128,30 @@ flowchart LR
 
 [查看真实训练与对照报告](docs/TRAINING_REPORT.md) · [训练路线与方向二交付条件](docs/TRAINING_STRATEGY.md)。训练只在具有获配 GPU 的服务器运行，普通电脑默认 Demo 不受影响。
 
+使用最新源码时，可直接安装已发布 Adapter，无须使用旧复现包中的代码：
+
+```bash
+python3 scripts/download_adapter.py --output adapters/cuad-pilot-v1
+python3 scripts/download_adapter.py --output adapters/cuad-pilot-v1 --verify-only
+```
+
+下载工具只获取约 22.6MB 的已发布 ZIP，逐项校验后安装 Adapter 和许可，不下载基座、不启动 GPU、不覆盖已有目录。已有 ZIP 可追加 `--bundle /path/to/TradePilot-CUAD-Pilot-v0.1.0.zip` 离线安装。在自己的服务器准备匹配基座和推理依赖后，通过独立入口运行：
+
+```bash
+python3 scripts/gpu_guard.py --gpu GPU-替换为完整UUID -- \
+  python3 ml/predict_clause.py \
+    --model /absolute/path/Qwen3-4B-Instruct-2507 \
+    --adapter adapters/cuad-pilot-v1 \
+    --input data/examples/clause-request.json
+```
+
+独立入口会先校验基座与 Adapter，再加载 GPU。输出引句仍须查看 `quotes_verified`；实验模型不会自动变成业务默认模型。
+
 ## 验证与边界
 
 CI 检查后端行为、前端生产构建、预览与规则结果一致性，并从全新 Docker 环境走通三个案例的认证、审查、审批和导出。GPU 推理不在普通 CI 中执行。新增的 28 场景 API 工程回归也在 CI 执行并保存逐场景报告；这是受控同源模板回归，不代表独立专业测试成绩。
 
-已完成的原始模型工程验证包括三个任务接口和一个虚构案例完整流程；**它们不是独立效果评测**。专业数据集、QLoRA 训练、100 个 Agent 案例、消融实验和用户试用仍待建设。
+已完成的原始模型工程验证包括三个任务接口和一个虚构案例完整流程；**它们不是独立效果评测**。CUAD 子集的 BF16 LoRA 试训及独立对照已完成；正式外贸专项数据、原计划 QLoRA 配置对比、100 个 Agent 案例、消融实验和用户试用仍待建设。
 
 - 扫描 PDF 会提示需要 OCR，尚未集成完整扫描件解析。
 - 当前为单工作区、单业务进程；适合自行运行和演示，多用户服务需要补权限隔离与并发队列。

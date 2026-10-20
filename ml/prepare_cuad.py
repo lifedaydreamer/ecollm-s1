@@ -23,6 +23,8 @@ def family(title):
 
 
 def prepare(archive, output):
+    if output.exists() and (not output.is_dir() or any(output.iterdir())):
+        raise ValueError("Refuse to overwrite a frozen dataset; choose a new output directory")
     raw = archive.read_bytes()
     if hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest() != SOURCE_BLOB:
         raise ValueError("CUAD source blob changed; inspect a new version before use")

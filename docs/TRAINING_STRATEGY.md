@@ -77,6 +77,15 @@ ContractNLI 可用于研究合同推理，但其原任务是 NDA 的假设蕴含
 
 ### 独立推理示例
 
+推荐从最新源码安装已发布 Adapter：
+
+```bash
+python scripts/download_adapter.py --output adapters/cuad-pilot-v1
+python scripts/download_adapter.py --output adapters/cuad-pilot-v1 --verify-only
+```
+
+已有 ZIP 可使用 `--bundle /path/to/TradePilot-CUAD-Pilot-v0.1.0.zip`，执行相同的完整包与文件哈希校验。安装保留模型许可和数据归属，拒绝覆盖已有目录；不需要 Torch、GPU 或基座。使用最新源码加安装后的权重，可避免误用发布页面关联旧应用基线的自动 Source code 压缩包。原始训练快照及冻结实验结果继续保持原版本。
+
 在已经获配且无人使用的 GPU 上，先通过资源检查，再运行：
 
 ```bash
@@ -87,7 +96,7 @@ python scripts/gpu_guard.py --gpu GPU-替换为完整UUID -- \
     --input data/examples/clause-request.json
 ```
 
-省略 `--adapter` 就是同一任务的原始基座入口。该示例是自写虚构文本，不属于训练或评测金标准。不要将示例 UUID 直接复制为真实设备参数。
+省略 `--adapter` 就是同一任务的原始基座入口。该入口在加载模型前自动校验全部已登记基座文件、已发布 Adapter 权重及其关键配置；不匹配时停止。其他新训练 Adapter 需先单独发布身份清单与验收，不能冒用本实验清单。该示例是自写虚构文本，不属于训练或评测金标准。不要将示例 UUID 直接复制为真实设备参数。
 
 ### 独立训练环境
 
@@ -112,3 +121,5 @@ python scripts/gpu_guard.py --gpu GPU-替换为完整UUID --min-free-mib 40000 -
 ```
 
 准备检查不会创建实验输出目录；正式执行拒绝覆盖已有实验。输出包含 Adapter、数据/代码/基座身份、训练日志、基座与微调预测和评测摘要。未通过验证增益门槛时，测试集保持未评测状态。
+
+数据准备也拒绝覆盖已有非空输出目录。已有冻结切片时直接使用并校验；需要重新生成时选择新的数据版本目录，避免改写封存划分。

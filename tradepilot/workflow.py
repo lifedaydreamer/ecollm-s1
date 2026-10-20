@@ -36,10 +36,11 @@ def make_graph(checkpointer):
                         continue
                     result = analyze_remote(AnalyzeRequest(task="extract", documents=[current_doc], policy=state["policy"]))
                     limitations.extend(result.limitations)
+                    # Compare with the pre-extraction fields, not facts appended in this response.
+                    # Otherwise a second, conflicting value is silently discarded.
                     for fact in result.facts:
                         doc = next(d for d in docs if d["id"] == fact.evidence.document_id)
-                        existing = [f for f in doc["facts"] if f["field"] == fact.field]
-                        if not existing:
+                        if fact.field not in explicit_fields:
                             doc["facts"].append(fact.model_dump())
             except Exception as exc:
                 limitations.append(f"语义抽取不可用（{type(exc).__name__}）；未静默替换模型结果。")

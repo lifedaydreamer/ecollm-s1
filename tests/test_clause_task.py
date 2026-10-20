@@ -45,6 +45,10 @@ def test_cuad_conversion_preserves_labels_and_isolates_issuer(tmp_path,monkeypat
         z.writestr("CUADv1.json",json.dumps({"data":documents}));z.writestr("test.json",json.dumps({"data":[test]}))
     raw=archive.read_bytes();monkeypatch.setattr(module,"SOURCE_BLOB",hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest())
     manifest=module.prepare(archive,tmp_path/"output")
+    original=(tmp_path/"output"/"manifest.json").read_bytes()
+    with pytest.raises(ValueError,match="frozen dataset"):
+        module.prepare(archive,tmp_path/"output")
+    assert (tmp_path/"output"/"manifest.json").read_bytes()==original
     assert manifest["audit"]["train_contracts_removed_due_to_test_issuer"]==1
     for split in ("train","validation","test"):
         for line in (tmp_path/"output"/(split+".jsonl")).read_text().splitlines():

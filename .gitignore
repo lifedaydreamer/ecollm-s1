@@ -12,6 +12,7 @@ node_modules/
 .next/
 *.tsbuildinfo
 models/
+adapters/
 checkpoints/
 *.safetensors
 *.bin

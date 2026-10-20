@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from tradepilot.clause_task import messages, parse_prediction, OUTPUT_SCHEMA
+from tradepilot.artifacts import verify_base, verify_clause_adapter
 
 
 def main():
@@ -13,14 +14,18 @@ def main():
     a=p.parse_args()
     if not os.getenv("CUDA_VISIBLE_DEVICES","").startswith("GPU-"):
         raise SystemExit("Launch through scripts/gpu_guard.py with an explicitly allocated GPU UUID")
+    body=json.loads(a.input.read_text())
+    prompt=messages({"input":body})
+    verify_base(a.model)
+    if a.adapter:
+        verify_clause_adapter(a.adapter)
     import torch
     from transformers import AutoTokenizer,AutoModelForCausalLM
     from lmformatenforcer import JsonSchemaParser
     from lmformatenforcer.integrations.transformers import build_transformers_prefix_allowed_tokens_fn
     torch.set_num_threads(2);torch.manual_seed(42);torch.cuda.set_per_process_memory_fraction(0.7,0)
-    body=json.loads(a.input.read_text())
     tokenizer=AutoTokenizer.from_pretrained(a.model,local_files_only=True,trust_remote_code=False)
-    ids=tokenizer.apply_chat_template(messages({"input":body}),tokenize=True,add_generation_prompt=True,enable_thinking=False,return_tensors="pt")
+    ids=tokenizer.apply_chat_template(prompt,tokenize=True,add_generation_prompt=True,enable_thinking=False,return_tensors="pt")
     if ids.shape[1]+768>2048:
         raise SystemExit("Excerpt too long for this pilot; split it without dropping evidence")
     model=AutoModelForCausalLM.from_pretrained(a.model,dtype=torch.bfloat16,local_files_only=True,trust_remote_code=False).to("cuda:0")

@@ -243,7 +243,7 @@ def create_app(db_url=None, data_dir=None, token=None):
                 RunRow.status.in_(["awaiting_review", "approved"])).order_by(RunRow.created_at.desc()))
             run = RunRow(case_id=case_id, revision=case.revision, payload=encode({"input": snapshot, "decisions": {},
                 "previous_run_id": previous.id if previous else None,
-                "model": os.getenv("TRADEPILOT_MODEL_NAME", "rules-only"), "prompt_version": "review-v1", "rule_version": "seller-rules-v3-conflict-preserving", "validator_version": "evidence-v2-bilateral", "knowledge_snapshot": knowledge_snapshot, "limits": "single-tenant-prototype"}))
+                "model": os.getenv("TRADEPILOT_MODEL_NAME", "rules-only"), "prompt_version": "review-v1", "rule_version": "seller-rules-v4-payment-phrases", "validator_version": "evidence-v2-bilateral", "knowledge_snapshot": knowledge_snapshot, "limits": "single-tenant-prototype"}))
             s.add(run)
             body["status"] = "running"
             case.payload = encode(body)
@@ -343,9 +343,9 @@ def create_app(db_url=None, data_dir=None, token=None):
     def demo(variant: str = "conflict"):
         from io import BytesIO
         from .demos import demo_documents
-        if variant not in {"normal", "conflict", "missing"}:
+        if variant not in {"normal", "conflict", "missing", "payment"}:
             raise HTTPException(422, "无效的演示类型")
-        case = new_case(NewCase(title={"normal": "正常交易", "conflict": "报价与合同条件变化", "missing": "材料不足"}[variant], description="程序生成的虚构演示材料，非真实客户数据"))
+        case = new_case(NewCase(title={"normal": "正常交易", "conflict": "报价与合同条件变化", "missing": "材料不足", "payment": "英文付款条款变化"}[variant], description="程序生成的虚构演示材料，非真实客户数据"))
         for kind, name, content in demo_documents(variant):
             upload(case["id"], kind, kind == "quote", UploadFile(file=BytesIO(content.encode()), filename=name))
         return get_case(case["id"])

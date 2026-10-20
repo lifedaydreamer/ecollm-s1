@@ -48,7 +48,7 @@ def normalize(field, value):
     return " ".join(value.split())
 
 
-def extract(doc):
+def extract_explicit(doc):
     facts = []
     for block in doc["blocks"]:
         for field, pattern in PATTERNS.items():
@@ -67,6 +67,38 @@ def extract(doc):
                 facts.append(Fact(field=field, raw=raw, value=value,
                     evidence=Evidence(document_id=doc["id"], block_id=block["id"],
                                       quote=block["text"], location=block["location"])).model_dump())
+    return facts
+
+
+def extract(doc):
+    from .payment_terms import extract_payment_terms, canonical_trigger
+    facts = extract_explicit(doc)
+    for fact in facts:
+        if fact["field"] == "payment_trigger":
+            fact["value"] = canonical_trigger(fact["value"])
+    for block in doc["blocks"]:
+        candidates, warnings = extract_payment_terms(block["text"])
+        if any("条件或替代方案" in warning for warning in warnings):
+            facts = [f for f in facts if f["evidence"]["block_id"] != block["id"] or f["field"] not in {"deposit_percent", "payment_days", "payment_trigger"}]
+        elif any("范围或上下限" in warning for warning in warnings):
+            facts = [f for f in facts if f["evidence"]["block_id"] != block["id"] or f["field"] != "deposit_percent"]
+        for warning in warnings:
+            if warning not in doc.setdefault("warnings", []):
+                doc["warnings"].append(warning)
+        if any("账期表述为范围" in warning for warning in warnings):
+            facts = [f for f in facts if f["evidence"]["block_id"] != block["id"] or f["field"] not in {"payment_days", "payment_trigger"}]
+        for candidate in candidates:
+            try:
+                value = normalize(candidate["field"], candidate["value"])
+            except (ValueError, InvalidOperation):
+                warning = f"字段 {candidate['field']} 无法可靠标准化，请校对原文。"
+                if warning not in doc.setdefault("warnings", []): doc["warnings"].append(warning)
+                continue
+            if any(f["field"] == candidate["field"] and f["value"] == value and f["evidence"]["block_id"] == block["id"] for f in facts):
+                continue
+            facts.append(Fact(field=candidate["field"], raw=candidate["raw"], value=value,
+                evidence=Evidence(document_id=doc["id"], block_id=block["id"], quote=candidate["quote"],
+                                  location=block["location"])).model_dump())
     return facts
 
 

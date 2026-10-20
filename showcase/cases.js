@@ -1680,5 +1680,572 @@ globalThis.TRADEPILOT_CASES = {
         "origin": "rule"
       }
     ]
+  },
+  "payment": {
+    "synthetic": true,
+    "engine": "rules-only",
+    "policy": {
+      "version": "seller-v1",
+      "min_deposit_percent": 30,
+      "max_payment_days": 30
+    },
+    "documents": [
+      {
+        "id": "inquiry",
+        "kind": "inquiry",
+        "name": "inquiry.txt",
+        "blocks": [
+          {
+            "id": "b1",
+            "text": "Buyer: Northstar Trading Ltd",
+            "page": null,
+            "location": "line 1",
+            "bbox": null
+          },
+          {
+            "id": "b2",
+            "text": "Quantity: 5000",
+            "page": null,
+            "location": "line 2",
+            "bbox": null
+          },
+          {
+            "id": "b3",
+            "text": "Shipment date: 2027-01-15",
+            "page": null,
+            "location": "line 3",
+            "bbox": null
+          },
+          {
+            "id": "b4",
+            "text": "Please quote household storage products.",
+            "page": null,
+            "location": "line 4",
+            "bbox": null
+          }
+        ],
+        "warnings": [],
+        "facts": [
+          {
+            "id": "inquiry:buyer:b1",
+            "field": "buyer",
+            "raw": "Northstar Trading Ltd",
+            "value": "Northstar Trading Ltd",
+            "evidence": {
+              "document_id": "inquiry",
+              "block_id": "b1",
+              "quote": "Buyer: Northstar Trading Ltd",
+              "location": "line 1"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "inquiry:quantity:b2",
+            "field": "quantity",
+            "raw": "5000",
+            "value": "5000",
+            "evidence": {
+              "document_id": "inquiry",
+              "block_id": "b2",
+              "quote": "Quantity: 5000",
+              "location": "line 2"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "inquiry:shipment_date:b3",
+            "field": "shipment_date",
+            "raw": "2027-01-15",
+            "value": "2027-01-15",
+            "evidence": {
+              "document_id": "inquiry",
+              "block_id": "b3",
+              "quote": "Shipment date: 2027-01-15",
+              "location": "line 3"
+            },
+            "confirmed": false
+          }
+        ]
+      },
+      {
+        "id": "quote",
+        "kind": "quote",
+        "name": "quotation.txt",
+        "blocks": [
+          {
+            "id": "b1",
+            "text": "Seller: Ningbo Horizon Goods Co Ltd",
+            "page": null,
+            "location": "line 1",
+            "bbox": null
+          },
+          {
+            "id": "b2",
+            "text": "Buyer: Northstar Trading Ltd",
+            "page": null,
+            "location": "line 2",
+            "bbox": null
+          },
+          {
+            "id": "b3",
+            "text": "Currency: USD",
+            "page": null,
+            "location": "line 3",
+            "bbox": null
+          },
+          {
+            "id": "b4",
+            "text": "Quantity: 5000",
+            "page": null,
+            "location": "line 4",
+            "bbox": null
+          },
+          {
+            "id": "b5",
+            "text": "Total: USD 90000",
+            "page": null,
+            "location": "line 5",
+            "bbox": null
+          },
+          {
+            "id": "b6",
+            "text": "Payment terms: 30% as a deposit, balance 70% payable within 30 days after shipment.",
+            "page": null,
+            "location": "line 6",
+            "bbox": null
+          },
+          {
+            "id": "b7",
+            "text": "Incoterm: FOB Ningbo Incoterms 2020",
+            "page": null,
+            "location": "line 7",
+            "bbox": null
+          }
+        ],
+        "warnings": [],
+        "facts": [
+          {
+            "id": "quote:seller:b1",
+            "field": "seller",
+            "raw": "Ningbo Horizon Goods Co Ltd",
+            "value": "Ningbo Horizon Goods Co Ltd",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b1",
+              "quote": "Seller: Ningbo Horizon Goods Co Ltd",
+              "location": "line 1"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:buyer:b2",
+            "field": "buyer",
+            "raw": "Northstar Trading Ltd",
+            "value": "Northstar Trading Ltd",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b2",
+              "quote": "Buyer: Northstar Trading Ltd",
+              "location": "line 2"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:currency:b3",
+            "field": "currency",
+            "raw": "USD",
+            "value": "USD",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b3",
+              "quote": "Currency: USD",
+              "location": "line 3"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:quantity:b4",
+            "field": "quantity",
+            "raw": "5000",
+            "value": "5000",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b4",
+              "quote": "Quantity: 5000",
+              "location": "line 4"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:total:b5",
+            "field": "total",
+            "raw": "90000",
+            "value": "90000",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b5",
+              "quote": "Total: USD 90000",
+              "location": "line 5"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:incoterm:b7",
+            "field": "incoterm",
+            "raw": "FOB Ningbo Incoterms 2020",
+            "value": "FOB Ningbo Incoterms 2020",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b7",
+              "quote": "Incoterm: FOB Ningbo Incoterms 2020",
+              "location": "line 7"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:deposit_percent:b6",
+            "field": "deposit_percent",
+            "raw": "30% as a deposit",
+            "value": "30",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b6",
+              "quote": "30% as a deposit",
+              "location": "line 6"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:payment_days:b6",
+            "field": "payment_days",
+            "raw": "balance 70% payable within 30 days after shipment",
+            "value": "30",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b6",
+              "quote": "balance 70% payable within 30 days after shipment",
+              "location": "line 6"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "quote:payment_trigger:b6",
+            "field": "payment_trigger",
+            "raw": "balance 70% payable within 30 days after shipment",
+            "value": "shipment",
+            "evidence": {
+              "document_id": "quote",
+              "block_id": "b6",
+              "quote": "balance 70% payable within 30 days after shipment",
+              "location": "line 6"
+            },
+            "confirmed": false
+          }
+        ]
+      },
+      {
+        "id": "contract",
+        "kind": "contract",
+        "name": "contract.txt",
+        "blocks": [
+          {
+            "id": "b1",
+            "text": "Seller: Ningbo Horizon Goods Co Ltd",
+            "page": null,
+            "location": "line 1",
+            "bbox": null
+          },
+          {
+            "id": "b2",
+            "text": "Buyer: Northstar Trading Ltd",
+            "page": null,
+            "location": "line 2",
+            "bbox": null
+          },
+          {
+            "id": "b3",
+            "text": "Currency: USD",
+            "page": null,
+            "location": "line 3",
+            "bbox": null
+          },
+          {
+            "id": "b4",
+            "text": "Quantity: 5000",
+            "page": null,
+            "location": "line 4",
+            "bbox": null
+          },
+          {
+            "id": "b5",
+            "text": "Total: USD 90000",
+            "page": null,
+            "location": "line 5",
+            "bbox": null
+          },
+          {
+            "id": "b6",
+            "text": "Payment terms: 0% deposit, balance 100% payable within 90 days after delivery.",
+            "page": null,
+            "location": "line 6",
+            "bbox": null
+          },
+          {
+            "id": "b7",
+            "text": "Incoterm: FOB Ningbo Incoterms 2020",
+            "page": null,
+            "location": "line 7",
+            "bbox": null
+          }
+        ],
+        "warnings": [],
+        "facts": [
+          {
+            "id": "contract:seller:b1",
+            "field": "seller",
+            "raw": "Ningbo Horizon Goods Co Ltd",
+            "value": "Ningbo Horizon Goods Co Ltd",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b1",
+              "quote": "Seller: Ningbo Horizon Goods Co Ltd",
+              "location": "line 1"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:buyer:b2",
+            "field": "buyer",
+            "raw": "Northstar Trading Ltd",
+            "value": "Northstar Trading Ltd",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b2",
+              "quote": "Buyer: Northstar Trading Ltd",
+              "location": "line 2"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:currency:b3",
+            "field": "currency",
+            "raw": "USD",
+            "value": "USD",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b3",
+              "quote": "Currency: USD",
+              "location": "line 3"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:quantity:b4",
+            "field": "quantity",
+            "raw": "5000",
+            "value": "5000",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b4",
+              "quote": "Quantity: 5000",
+              "location": "line 4"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:total:b5",
+            "field": "total",
+            "raw": "90000",
+            "value": "90000",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b5",
+              "quote": "Total: USD 90000",
+              "location": "line 5"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:incoterm:b7",
+            "field": "incoterm",
+            "raw": "FOB Ningbo Incoterms 2020",
+            "value": "FOB Ningbo Incoterms 2020",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b7",
+              "quote": "Incoterm: FOB Ningbo Incoterms 2020",
+              "location": "line 7"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:deposit_percent:b6",
+            "field": "deposit_percent",
+            "raw": "0% deposit",
+            "value": "0",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b6",
+              "quote": "0% deposit",
+              "location": "line 6"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:payment_days:b6",
+            "field": "payment_days",
+            "raw": "balance 100% payable within 90 days after delivery",
+            "value": "90",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b6",
+              "quote": "balance 100% payable within 90 days after delivery",
+              "location": "line 6"
+            },
+            "confirmed": false
+          },
+          {
+            "id": "contract:payment_trigger:b6",
+            "field": "payment_trigger",
+            "raw": "balance 100% payable within 90 days after delivery",
+            "value": "delivery",
+            "evidence": {
+              "document_id": "contract",
+              "block_id": "b6",
+              "quote": "balance 100% payable within 90 days after delivery",
+              "location": "line 6"
+            },
+            "confirmed": false
+          }
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "id": "80e4725dfc9404fe",
+        "key": "difference:quote:deposit_percent",
+        "kind": "difference",
+        "severity": "info",
+        "title": "预付款比例发生变化",
+        "explanation": "quotation.txt：30；contract.txt：0。",
+        "suggestion": "核对是否为双方有意修改，确认后保留处理理由。",
+        "evidence": [
+          {
+            "document_id": "quote",
+            "block_id": "b6",
+            "quote": "30% as a deposit",
+            "location": "line 6"
+          },
+          {
+            "document_id": "contract",
+            "block_id": "b6",
+            "quote": "0% deposit",
+            "location": "line 6"
+          }
+        ],
+        "basis": [],
+        "origin": "rule"
+      },
+      {
+        "id": "38ce51a4a1de7ead",
+        "key": "difference:quote:payment_days",
+        "kind": "difference",
+        "severity": "info",
+        "title": "账期发生变化",
+        "explanation": "quotation.txt：30；contract.txt：90。",
+        "suggestion": "核对是否为双方有意修改，确认后保留处理理由。",
+        "evidence": [
+          {
+            "document_id": "quote",
+            "block_id": "b6",
+            "quote": "balance 70% payable within 30 days after shipment",
+            "location": "line 6"
+          },
+          {
+            "document_id": "contract",
+            "block_id": "b6",
+            "quote": "balance 100% payable within 90 days after delivery",
+            "location": "line 6"
+          }
+        ],
+        "basis": [],
+        "origin": "rule"
+      },
+      {
+        "id": "b908d2d7c0dd560f",
+        "key": "difference:quote:payment_trigger",
+        "kind": "difference",
+        "severity": "info",
+        "title": "付款触发条件发生变化",
+        "explanation": "quotation.txt：shipment；contract.txt：delivery。",
+        "suggestion": "核对是否为双方有意修改，确认后保留处理理由。",
+        "evidence": [
+          {
+            "document_id": "quote",
+            "block_id": "b6",
+            "quote": "balance 70% payable within 30 days after shipment",
+            "location": "line 6"
+          },
+          {
+            "document_id": "contract",
+            "block_id": "b6",
+            "quote": "balance 100% payable within 90 days after delivery",
+            "location": "line 6"
+          }
+        ],
+        "basis": [],
+        "origin": "rule"
+      },
+      {
+        "id": "357f32de027f45dc",
+        "key": "policy:contract:deposit_percent",
+        "kind": "business_risk",
+        "severity": "high",
+        "title": "预付款低于企业策略",
+        "explanation": "当前值 0；企业策略 seller-v1 的阈值为 30.0。",
+        "suggestion": "与业务负责人确认，形成修改建议或记录例外接受理由。",
+        "evidence": [
+          {
+            "document_id": "contract",
+            "block_id": "b6",
+            "quote": "0% deposit",
+            "location": "line 6"
+          }
+        ],
+        "basis": [
+          {
+            "title": "seller-v1",
+            "type": "enterprise_policy",
+            "value": 30.0
+          }
+        ],
+        "origin": "rule"
+      },
+      {
+        "id": "9254f0fdb2d1f724",
+        "key": "policy:contract:payment_days",
+        "kind": "business_risk",
+        "severity": "high",
+        "title": "账期超出企业策略",
+        "explanation": "当前值 90；企业策略 seller-v1 的阈值为 30。",
+        "suggestion": "与业务负责人确认，形成修改建议或记录例外接受理由。",
+        "evidence": [
+          {
+            "document_id": "contract",
+            "block_id": "b6",
+            "quote": "balance 100% payable within 90 days after delivery",
+            "location": "line 6"
+          }
+        ],
+        "basis": [
+          {
+            "title": "seller-v1",
+            "type": "enterprise_policy",
+            "value": 30
+          }
+        ],
+        "origin": "rule"
+      }
+    ]
   }
 };

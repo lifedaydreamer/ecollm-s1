@@ -15,7 +15,7 @@ from tradepilot.schema import Policy
 
 def snapshots():
     result = {}
-    for variant in ("conflict", "normal", "missing"):
+    for variant in ("conflict", "normal", "missing", "payment"):
         documents = []
         for kind, name, text in demo_documents(variant):
             blocks, warnings = parse_document(name, text.encode())

@@ -3,8 +3,8 @@
   const cases = globalThis.TRADEPILOT_CASES;
   const labels = {seller:"卖方",buyer:"买方",currency:"币种",total:"总额",quantity:"数量",deposit_percent:"预付款比例",payment_days:"账期",payment_trigger:"付款触发条件",shipment_date:"装运日期",incoterm:"贸易术语",inspection:"验收",liability:"责任",dispute:"争议解决"};
   const kinds = {difference:"文件差异",business_risk:"策略风险",missing_info:"待补充"};
-  let scenario = "conflict", docId = "contract", filter = "all";
-  const decisions = {conflict:new Set(),normal:new Set(),missing:new Set()};
+  let scenario = Object.hasOwn(cases,location.hash.slice(1))?location.hash.slice(1):"conflict", docId = "contract", filter = "all";
+  const decisions = Object.fromEntries(Object.keys(cases).map(name=>[name,new Set()]));
   const $ = id => document.getElementById(id);
   function node(tag, className, text) {const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;}
   function button(className, text, action) {const el=node("button",className,text);el.type="button";el.addEventListener("click",action);return el;}
@@ -16,7 +16,7 @@
   }
   function render() {
     const current=cases[scenario];
-    $("case-title").textContent={conflict:"报价与合同条件变化",normal:"正常交易 · 规则检查",missing:"材料不足 · 待核实"}[scenario];
+    $("case-title").textContent={conflict:"报价与合同条件变化",normal:"正常交易 · 规则检查",missing:"材料不足 · 待核实",payment:"英文付款条款 · 无 GPU 解析"}[scenario];
     document.querySelectorAll("[data-scenario]").forEach(el=>{el.classList.toggle("selected",el.dataset.scenario===scenario);el.setAttribute("aria-pressed",String(el.dataset.scenario===scenario));});
     $("revision").disabled=scenario!=="conflict";
     renderSource();
@@ -34,7 +34,8 @@
     $("findings").replaceChildren(...elements);
     $("progress").textContent=current.findings.length?`已模拟核对 ${decisions[scenario].size} / ${current.findings.length} 项`:"规则检查完成 · 仍需人工语义复核";
   }
-  document.querySelectorAll("[data-scenario]").forEach(el=>el.addEventListener("click",()=>{scenario=el.dataset.scenario;docId="contract";filter="all";render();}));
+  document.querySelectorAll("[data-scenario]").forEach(el=>el.addEventListener("click",()=>{scenario=el.dataset.scenario;docId="contract";filter="all";history.replaceState(null,"","#"+scenario);render();}));
+  window.addEventListener("hashchange",()=>{const name=location.hash.slice(1);if(Object.hasOwn(cases,name)){scenario=name;docId="contract";filter="all";render();}});
   document.querySelectorAll("[data-filter]").forEach(el=>el.addEventListener("click",()=>{filter=el.dataset.filter;render();}));
   $("revision").addEventListener("click",()=>{scenario="normal";filter="all";render();$("case-title").textContent="修订示例 · 金额、预付款与账期已与报价一致";});
   $("export").addEventListener("click",()=>{const value={...cases[scenario],preview_only:true,simulated_checked_ids:[...decisions[scenario]],note:"Synthetic static demo; not a real approval or model evaluation"};const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:"application/json"}));const a=node("a");a.href=url;a.download="tradepilot-"+scenario+"-demo.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});

@@ -1,0 +1,519 @@
+{
+  "kind": "controlled_engineering_coverage_not_independent_quality",
+  "model_calls": 0,
+  "dataset_sha256": "c31c3b5c46948dee33f57679a21ddc492f1ab0c167c9bff63675cd9d88bb0246",
+  "limitation": "Self-authored cases created alongside the rules; does not establish general business accuracy",
+  "results": {
+    "previous_literal_parser": {
+      "cases": 24,
+      "exact_cases": 7,
+      "exact_case_rate": 0.2916666666666667,
+      "tp": 4,
+      "fp": 1,
+      "fn": 44,
+      "field_micro_f1": 0.1509433962264151,
+      "emitted_fact_evidence_match": 1.0,
+      "elapsed_ms": 2.29727104306221,
+      "details": [
+        {
+          "id": "p01",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "30"
+            ],
+            [
+              "payment_days",
+              "60"
+            ],
+            [
+              "payment_trigger",
+              "shipment"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p02",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "20"
+            ],
+            [
+              "payment_days",
+              "45"
+            ],
+            [
+              "payment_trigger",
+              "delivery"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p03",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "25"
+            ],
+            [
+              "payment_days",
+              "30"
+            ],
+            [
+              "payment_trigger",
+              "invoice"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p04",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "40"
+            ],
+            [
+              "payment_days",
+              "15"
+            ],
+            [
+              "payment_trigger",
+              "delivery"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p05",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "10"
+            ],
+            [
+              "payment_days",
+              "90"
+            ],
+            [
+              "payment_trigger",
+              "acceptance"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p06",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "35"
+            ],
+            [
+              "payment_days",
+              "20"
+            ],
+            [
+              "payment_trigger",
+              "shipment"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p07",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "50"
+            ],
+            [
+              "payment_days",
+              "30"
+            ],
+            [
+              "payment_trigger",
+              "invoice"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p08",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "15"
+            ],
+            [
+              "payment_days",
+              "10"
+            ],
+            [
+              "payment_trigger",
+              "delivery"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p09",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "0"
+            ],
+            [
+              "payment_days",
+              "120"
+            ],
+            [
+              "payment_trigger",
+              "delivery"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p10",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "100"
+            ],
+            [
+              "payment_days",
+              "0"
+            ],
+            [
+              "payment_trigger",
+              "shipment"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p11",
+          "passed": false,
+          "missing": [
+            [
+              "payment_trigger",
+              "shipment"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p12",
+          "passed": false,
+          "missing": [
+            [
+              "payment_trigger",
+              "invoice"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p13",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "12.5"
+            ],
+            [
+              "payment_days",
+              "35"
+            ],
+            [
+              "payment_trigger",
+              "delivery"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p14",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "22"
+            ],
+            [
+              "payment_days",
+              "25"
+            ],
+            [
+              "payment_trigger",
+              "bill of lading date"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p15",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "30"
+            ],
+            [
+              "payment_days",
+              "60"
+            ],
+            [
+              "payment_trigger",
+              "shipment"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "p16",
+          "passed": false,
+          "missing": [
+            [
+              "deposit_percent",
+              "45"
+            ],
+            [
+              "payment_days",
+              "50"
+            ],
+            [
+              "payment_trigger",
+              "invoice"
+            ]
+          ],
+          "unexpected": []
+        },
+        {
+          "id": "n01",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n02",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n03",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n04",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n05",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n06",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n07",
+          "passed": false,
+          "missing": [],
+          "unexpected": [
+            [
+              "deposit_percent",
+              "30"
+            ]
+          ]
+        },
+        {
+          "id": "n08",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        }
+      ]
+    },
+    "payment_phrase_parser": {
+      "cases": 24,
+      "exact_cases": 24,
+      "exact_case_rate": 1.0,
+      "tp": 48,
+      "fp": 0,
+      "fn": 0,
+      "field_micro_f1": 1.0,
+      "emitted_fact_evidence_match": 1.0,
+      "elapsed_ms": 4.487685859203339,
+      "details": [
+        {
+          "id": "p01",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p02",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p03",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p04",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p05",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p06",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p07",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p08",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p09",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p10",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p11",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p12",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p13",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p14",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p15",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "p16",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n01",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n02",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n03",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n04",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n05",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n06",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n07",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        },
+        {
+          "id": "n08",
+          "passed": true,
+          "missing": [],
+          "unexpected": []
+        }
+      ]
+    }
+  }
+}

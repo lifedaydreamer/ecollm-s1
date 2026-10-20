@@ -7,4 +7,7 @@ def demo_documents(variant="conflict", index=0):
     contract = common + f"Total: USD {total}\nDeposit: {deposit}%\nBalance due: {days} days\nPayment trigger: bill of lading copy\nShipment date: 2027-01-15\nIncoterm: FOB Ningbo Incoterms 2020\nInspection: Written objections within 15 days after delivery\nLiability: Parties shall negotiate an agreed cap before signing\nDispute resolution: Institution and seat to be confirmed\n"
     if variant == "missing":
         contract = "Seller: Ningbo Horizon Goods Co Ltd\nQuantity: 5000\nPayment: To be agreed\n"
+    if variant == "payment":
+        quote = common + f"Total: USD {qty*price}\nPayment terms: 30% as a deposit, balance 70% payable within 30 days after shipment.\nIncoterm: FOB Ningbo Incoterms 2020\n"
+        contract = common + f"Total: USD {qty*price}\nPayment terms: 0% deposit, balance 100% payable within 90 days after delivery.\nIncoterm: FOB Ningbo Incoterms 2020\n"
     return [("inquiry", "inquiry.txt", inquiry), ("quote", "quotation.txt", quote), ("contract", "contract.txt", contract)]

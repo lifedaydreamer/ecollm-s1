@@ -1,0 +1,66 @@
+{
+  "n": 54,
+  "schema_valid_rate": 1.0,
+  "all_quotes_grounded_rate": 0.9629629629629629,
+  "exact_span_set_match_rate": 0.7222222222222222,
+  "mean_evidence_token_f1": 0.8411369473076957,
+  "clause_presence_macro_f1": 0.9228395061728395,
+  "per_category": {
+    "Cap On Liability": {
+      "n": 6,
+      "tp": 4,
+      "presence_f1": 1.0
+    },
+    "Uncapped Liability": {
+      "n": 6,
+      "tp": 4,
+      "presence_f1": 1.0
+    },
+    "Liquidated Damages": {
+      "n": 6,
+      "tp": 4,
+      "fp": 1,
+      "presence_f1": 0.8888888888888888
+    },
+    "Warranty Duration": {
+      "n": 6,
+      "tp": 2,
+      "fn": 2,
+      "presence_f1": 0.6666666666666666
+    },
+    "Insurance": {
+      "n": 6,
+      "tp": 4,
+      "presence_f1": 1.0
+    },
+    "Audit Rights": {
+      "n": 6,
+      "tp": 4,
+      "presence_f1": 1.0
+    },
+    "Termination For Convenience": {
+      "n": 6,
+      "tp": 4,
+      "presence_f1": 1.0
+    },
+    "Governing Law": {
+      "n": 6,
+      "tp": 4,
+      "presence_f1": 1.0
+    },
+    "Minimum Commitment": {
+      "n": 6,
+      "fn": 1,
+      "tp": 3,
+      "fp": 1,
+      "presence_f1": 0.75
+    }
+  },
+  "note": "Public CUAD excerpt extraction only; not trade risk Macro-F1 or end-to-end agent success.",
+  "elapsed_seconds": 219.95,
+  "batch_size": 4,
+  "with_definitions": false,
+  "max_new_tokens": 768,
+  "decoding": "same JSON schema constraints; greedy; left padding",
+  "input_ids_sha256": "efba32ad1f6a48d1aead73675e43633005c0eb1f4e3eaa7250c1f2859d43056e"
+}

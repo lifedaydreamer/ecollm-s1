@@ -1,0 +1,610 @@
+[
+  {
+    "id": "652f21b7d71053cdf610a488",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"In any event, the total liquidated damages                     as per this Section shall not exceed 5% of the Product                     Price.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "In any event, the total liquidated damages                     as per this Section shall not exceed 5% of the Product                     Price."
+      ]
+    }
+  },
+  {
+    "id": "df15707859d3ccc183dbdebb",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"PageMaster Corporations' liability shall in no event exceed an amount equivalent to the amounts received by PageMaster Corporation hereunder.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "PageMaster Corporations' liability shall in no event exceed an amount equivalent to the amounts received by PageMaster Corporation hereunder."
+      ]
+    }
+  },
+  {
+    "id": "1bc2ecbed98f91dc26fa8202",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"PageMaster Corporations' liability shall in no event exceed an amount equivalent to the amounts received by PageMaster Corporation hereunder.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "PageMaster Corporations' liability shall in no event exceed an amount equivalent to the amounts received by PageMaster Corporation hereunder."
+      ]
+    }
+  },
+  {
+    "id": "d13806b64dfa196f0a3335fb",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Neither Party will be liable to the other for Indirect Losses in connection with any recall or withdrawal pursuant to this Section.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Neither Party will be liable to the other for Indirect Losses in connection with any recall or withdrawal pursuant to this Section."
+      ]
+    }
+  },
+  {
+    "id": "116c6f4ff4d97b0f601ee2fb",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "bf85229d73b1c22c033bcf7f",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "bc4c6eed1afe12e9347df784",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"TO THE MAXIMUM EXTENT PERMISSIBLE UNDER APPLICABLE LAW, EXCEPT FOR THE WILFUL MISAPPROPRIATION OR INFRINGEMENT OF THE INTELLECTUAL PROPERTY OF A PARTY TO THIS AGREEMENT, OR THE OBLIGATIONS OF THE PARTIES TO THIS AGREEMENT PURSUANT TO SECTION 13, (A) THE LIABILITY OF ANY PARTY TO THIS AGREEMENT, IF ANY, FOR DAMAGES FOR ANY CLAIM OF ANY KIND WHATSOEVER AND REGARDLESS OF THE LEGAL THEORY, WITH REGARD TO THE RIGHTS GRANTED HEREUNDER OR THE SERVICES PERFORMED HEREUNDER, SHALL NOT INCLUDE COMPENSATION, REIMBURSEMENT OR DAMAGES ON ACCOUNT OF THE LOSS OF PRESENT OR PROSPECTIVE PROFITS, EXPENDITURES, DATA, OPPORTUNITY, ANTICIPATED SAVINGS, INVESTMENTS OR COMMITMENTS, WHETHER MADE IN ESTABLISHMENT, DEVELOPMENT OR MAINTENANCE OF REPUTATION OR GOODWILL OR FOR ANY OTHER REASON WHATSOEVER; AND (B) IN NO EVENT SHALL ANY PARTY TO THIS AGREEMENT BE LIABLE TO THE OTHER PARTIES TO THIS AGREEMENT FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL, PUNITIVE OR CONSEQUENTIAL DAMAGES.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "TO THE MAXIMUM EXTENT PERMISSIBLE UNDER APPLICABLE LAW, EXCEPT FOR THE WILFUL MISAPPROPRIATION OR INFRINGEMENT OF THE INTELLECTUAL PROPERTY OF A PARTY TO THIS AGREEMENT, OR THE OBLIGATIONS OF THE PARTIES TO THIS AGREEMENT PURSUANT TO SECTION 13, (A) THE LIABILITY OF ANY PARTY TO THIS AGREEMENT, IF ANY, FOR DAMAGES FOR ANY CLAIM OF ANY KIND WHATSOEVER AND REGARDLESS OF THE LEGAL THEORY, WITH REGARD TO THE RIGHTS GRANTED HEREUNDER OR THE SERVICES PERFORMED HEREUNDER, SHALL NOT INCLUDE COMPENSATION, REIMBURSEMENT OR DAMAGES ON ACCOUNT OF THE LOSS OF PRESENT OR PROSPECTIVE PROFITS, EXPENDITURES, DATA, OPPORTUNITY, ANTICIPATED SAVINGS, INVESTMENTS OR COMMITMENTS, WHETHER MADE IN ESTABLISHMENT, DEVELOPMENT OR MAINTENANCE OF REPUTATION OR GOODWILL OR FOR ANY OTHER REASON WHATSOEVER; AND (B) IN NO EVENT SHALL ANY PARTY TO THIS AGREEMENT BE LIABLE TO THE OTHER PARTIES TO THIS AGREEMENT FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL, PUNITIVE OR CONSEQUENTIAL DAMAGES."
+      ]
+    }
+  },
+  {
+    "id": "585f672fc915d1cf71d168ba",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Except for claims arising out of Articles 4.3 and 7.0, or as may be set forth in a SOW, neither Party will be liable for any consequential damages, lost profits, lost savings, loss of anticipated revenue, or any exemplary, punitive, special or indirect damages, even if advised of their possibility.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Except for claims arising out of Articles 4.3 and 7.0, or as may be set forth in a SOW, neither Party will be liable for any consequential damages, lost profits, lost savings, loss of anticipated revenue, or any exemplary, punitive, special or indirect damages, even if advised of their possibility."
+      ]
+    }
+  },
+  {
+    "id": "9def7cb857635a8141c0be4d",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Except with respect to any claim or liability arising from an infringement of any third party intellectual property right, in no event shall either party be liable for any special, indirect, consequential, punitive or incidental damages of any kind."
+      ]
+    }
+  },
+  {
+    "id": "d32cc9473d9cc4a33dfed7ee",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"EXCEPT WITH REGARD TO OBLIGATIONS TO INDEMNIFY A PARTY FOR CLAIMS MADE BY THIRD PARTIES, NEITHER PARTY SHALL BE LIABLE TO THE OTHER PARTY (OR ITS AFFILIATES) PURSUANT TO THIS AGREEMENT FOR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, OR SPECIAL DAMAGES OR LOSSES OR ANY PUNITIVE, EXEMPLARY, TREBLE, OR SIMILAR DAMAGES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE PERFORMANCE OF, OR FAILURE TO PERFORM, ITS OBLIGATIONS HEREUNDER, EVEN IF SUCH DAMAGES OR LOSSES ARE CAUSED BY THE SOLE, JOINT, OR CONCURRENT NEGLIGENCE, STRICT LIABILITY, OR OTHER FAULT OF THE PARTY WHOSE LIABILITY IS BEING WAIVED HEREBY.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "EXCEPT WITH REGARD TO OBLIGATIONS TO INDEMNIFY A PARTY FOR CLAIMS MADE BY THIRD PARTIES, NEITHER PARTY SHALL BE LIABLE TO THE OTHER PARTY (OR ITS AFFILIATES) PURSUANT TO THIS AGREEMENT FOR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, OR SPECIAL DAMAGES OR LOSSES OR ANY PUNITIVE, EXEMPLARY, TREBLE, OR SIMILAR DAMAGES ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE PERFORMANCE OF, OR FAILURE TO PERFORM, ITS OBLIGATIONS HEREUNDER, EVEN IF SUCH DAMAGES OR LOSSES ARE CAUSED BY THE SOLE, JOINT, OR CONCURRENT NEGLIGENCE, STRICT LIABILITY, OR OTHER FAULT OF THE PARTY WHOSE LIABILITY IS BEING WAIVED HEREBY."
+      ]
+    }
+  },
+  {
+    "id": "d59b404f6e0658d5e610b720",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "857c4ba02fbb0af2842c90c0",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "de347477597da34b2426fe66",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"In the event Subcontractor directly employs or contracts with an employee of EDGE without the consent of EDGE, Subcontractor shall pay as liquidated damages two times the then monthly salary of the employee for a three-month period of time.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "In the event Subcontractor directly employs or contracts with an employee of EDGE without the consent of EDGE, Subcontractor shall pay as liquidated damages two times the then monthly salary of the employee for a three-month period of time."
+      ]
+    }
+  },
+  {
+    "id": "0dadc2bff51c5c5fc0123d37",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Each Party agrees that in the event it violates the provisions of this Section 15.9, it will pay to the other Party as liquidated damages, and not as a penalty, an amount equal to one hundred times (100 X) of any such employee's then-current base annual salary.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Each Party agrees that in the event it violates the provisions of this Section 15.9, it will pay to the other Party as liquidated damages, and not as a penalty, an amount equal to one hundred times (100 X) of any such employee's then-current base annual salary."
+      ]
+    }
+  },
+  {
+    "id": "8abf14450523c126a025da4d",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"In the event that Array (a) [ * ] during [ * ], or (b) intentionally conceals or falsifies a material result and/or material item of data concerning the safety or efficacy of the Product, which concealment or falsification (i) is undertaken to induce Ono to not terminate this Agreement and (ii) results in a substantial reduction to the value of the Product in the Ono Territory, then, as an alternative to its right to terminate this Agreement pursuant to Section 13.3 above, Ono may in its discretion elect to continue this Agreement, in which case (A) Ono shall be relieved of its due diligence obligations under this Agreement; and (B) as liquidated damages for the breaches described\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "In the event that Array (a) [ * ] during [ * ], or (b) intentionally conceals or falsifies a material result and/or material item of data concerning the safety or efficacy of the Product, which concealment or falsification (i) is undertaken to induce Ono to not terminate this Agreement and (ii) results in a substantial reduction to the value of the Product in the Ono Territory, then, as an alternative to its right to terminate this Agreement pursuant to Section 13.3 above, Ono may in its discretion elect to continue this Agreement, in which case (A) Ono shall be relieved of its due diligence obligations under this Agreement; and (B) as liquidated damages for the breaches described"
+      ]
+    }
+  },
+  {
+    "id": "69182d103f1441df42b883d6",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Within the Warranty period, LICENSEE may elect to pay D2 a sum of $1,400,000 as a one time paid-up runtime license fees for the Basic Services specified in Exhibit A.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Within the Warranty period, LICENSEE may elect to pay D2 a sum of $1,400,000 as a one time paid-up runtime license fees for the Basic Services specified in Exhibit A."
+      ]
+    }
+  },
+  {
+    "id": "a6999972e137b5dd69ea9f8b",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "6f8f0ba8836f258eaf7d5477",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"The defending Party shall have the right to settle the suit or consent to an adverse judgment thereto, in its sole discretion, so long as such settlement or adverse judgment does not adversely affect the rights of the other Party and its Affiliates (including any patent rights Controlled by any of them).\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "The defending Party shall have the right to settle the suit or consent to an adverse judgment thereto, in its sole discretion, so long as such settlement or adverse judgment does not adversely affect the rights of the other Party and its Affiliates (including any patent rights Controlled by any of them)."
+      ]
+    }
+  },
+  {
+    "id": "0f0c477440ef1fa783011210",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"If within one (1) year from the date of completion of Work acceptance, or within one (1) year from the completion of all other work or services and acceptance by EDGE (or within any longer materials warranty period as set forth above), any defects exists or arise, then in each case upon receipt of notice of such defect, Subcontractor shall (unless EDGE chooses another remedy) promptly cause such defect(s) to be repaired or remedied at Subcontractor's sole cost and expense, including but not limited to the costs of transportation, uncovering, removal, disposal, replacement, correction, installation and covering.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "If within one (1) year from the date of completion of Work acceptance, or within one (1) year from the completion of all other work or services and acceptance by EDGE (or within any longer materials warranty period as set forth above), any defects exists or arise, then in each case upon receipt of notice of such defect, Subcontractor shall (unless EDGE chooses another remedy) promptly cause such defect(s) to be repaired or remedied at Subcontractor's sole cost and expense, including but not limited to the costs of transportation, uncovering, removal, disposal, replacement, correction, installation and covering."
+      ]
+    }
+  },
+  {
+    "id": "b2a69f02f96a167325c5af48",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"\\\"Warranty Period\\\" means, (i) for each Bloom System, the period beginning on the day following the date that the \\\"Warranty Period\\\" for such Bloom System under and as defined in the MESPA has expired and ending on the twenty-first (21st) anniversary of the date of Commencement of Operations for such Bloom System and (ii) for the BOF, the period beginning on the day following the date that the Section 8.2(b) Warranty for such BOF has expired and ending on the twenty-first (21st) anniversary of such starting date.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "\"Warranty Period\" means, (i) for each Bloom System, the period beginning on the day following the date that the \"Warranty Period\" for such Bloom System under and as defined in the MESPA has expired and ending on the twenty-first (21st) anniversary of the date of Commencement of Operations for such Bloom System and (ii) for the BOF, the period beginning on the day following the date that the Section 8.2(b) Warranty for such BOF has expired and ending on the twenty-first (21st) anniversary of such starting date."
+      ]
+    }
+  },
+  {
+    "id": "082e9e7c12ee5b41d77038a2",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "f8f4a47068b41da3da54c6c0",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "8b1bfe76362f3f4d60d63f33",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "b9a15cd8629e5a24ad3d7126",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "5f8133afeb976df1272b5079",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"You must obtain and maintain appropriate insurance coverage for you and for our benefit, including any minimum coverages that we may establish.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "You must obtain and maintain appropriate insurance coverage for you and for our benefit, including any minimum coverages that we may establish."
+      ]
+    }
+  },
+  {
+    "id": "62b4ef357889c4cf5c6205e6",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Agent shall maintain during the term of this Agreement and while it is still responsible  for its Book of Business:  i.All required workers' compensation or similar insurance;  ii.Comprehensive general liability insurance. Agent shall promptly supply Kallo with proof of such insurance  upon request.\"]}",
+    "schema_valid": true,
+    "grounded": false,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Agent shall maintain during the term of this Agreement and while it is still responsible  for its Book of Business:  i.All required workers' compensation or similar insurance;  ii.Comprehensive general liability insurance. Agent shall promptly supply Kallo with proof of such insurance  upon request."
+      ]
+    }
+  },
+  {
+    "id": "0111da5f28612ee76ebae1ce",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Each Party, at its own expense, shall maintain product liability and other appropriate insurance (or self- insure) in an amount consistent with industry standards during the Term.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Each Party, at its own expense, shall maintain product liability and other appropriate insurance (or self- insure) in an amount consistent with industry standards during the Term."
+      ]
+    }
+  },
+  {
+    "id": "7eee00a59f1fd50d06d1bd91",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Allscripts will be named as an additional insured under the foregoing policies, each of which will be primary and non-contributory.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Allscripts will be named as an additional insured under the foregoing policies, each of which will be primary and non-contributory."
+      ]
+    }
+  },
+  {
+    "id": "f6049d6134636380751aa42f",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "ece3bea33d7681f1b5830239",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "1632fc96fe6a9d8171a8827f",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"During the Term, and for a period of twelve (12) months thereafter, Rogers (and its representatives) shall have the right, upon reasonable prior written notice to Licensor, and during regular business hours, to inspect and/or audit Licensor's books and records to confirm compliance with Licensor's obligations under this Section.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "During the Term, and for a period of twelve (12) months thereafter, Rogers (and its representatives) shall have the right, upon reasonable prior written notice to Licensor, and during regular business hours, to inspect and/or audit Licensor's books and records to confirm compliance with Licensor's obligations under this Section."
+      ]
+    }
+  },
+  {
+    "id": "65f0e4d9cca3cb46bf82a560",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Such records will be open for inspection during such three (3) year period by an independent certified public accounting firm of nationally (the US or Japan) recognized standing (the \\\"Auditor\\\"), chosen by Array and reasonably acceptable to Ono for the purpose of verifying the amounts payable by Ono hereunder.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Such records will be open for inspection during such three (3) year period by an independent certified public accounting firm of nationally (the US or Japan) recognized standing (the \"Auditor\"), chosen by Array and reasonably acceptable to Ono for the purpose of verifying the amounts payable by Ono hereunder."
+      ]
+    }
+  },
+  {
+    "id": "d0c370209c0c3f7fd01ab7f8",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Zogenix will have the right, upon reasonable prior written notice and during Distributor's regular business hours, to audit Distributor's and its Affiliates' books and records by an independent certified public accounting firm of recognized international standing, and Distributor shall ensure that Zogenix has the right to audit its Sub-distributors' and subcontractors' books and records, to investigation potential violations of any of the representations, warranties or covenants in this Section 10.2, the FCPA or other Applicable Laws or Distributor's compliance policies.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Zogenix will have the right, upon reasonable prior written notice and during Distributor's regular business hours, to audit Distributor's and its Affiliates' books and records by an independent certified public accounting firm of recognized international standing, and Distributor shall ensure that Zogenix has the right to audit its Sub-distributors' and subcontractors' books and records, to investigation potential violations of any of the representations, warranties or covenants in this Section 10.2, the FCPA or other Applicable Laws or Distributor's compliance policies."
+      ]
+    }
+  },
+  {
+    "id": "c19708d7a35c8f82a3f5f5a8",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Go Call, upon ten (10) days written notice, shall have the right to                examine the books and records of PageMaster Corporation to verify                the sales resulting from this promotion.\"]}",
+    "schema_valid": true,
+    "grounded": false,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Go Call, upon ten (10) days written notice, shall have the right to                examine the books and records of PageMaster Corporation to verify                the sales resulting from this promotion."
+      ]
+    }
+  },
+  {
+    "id": "972b949e20e53a11bd59bcdc",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "76034adc3b382b0ebc38dd5a",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "13fc125dbdc1ec166267b738",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Either party may terminate this Agreement immediately if the other party becomes insolvent, or takes any steps to make an arrangement with its creditors, or has a receiver appointed.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Either party may terminate this Agreement immediately if the other party becomes insolvent, or takes any steps to make an arrangement with its creditors, or has a receiver appointed."
+      ]
+    }
+  },
+  {
+    "id": "5ddc6983a97a5d46b1ddb207",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Upon Diplomat giving Tadeo at least sixty (60) days advance written notice of termination of this Agreement.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Upon Diplomat giving Tadeo at least sixty (60) days advance written notice of termination of this Agreement."
+      ]
+    }
+  },
+  {
+    "id": "d49f4ab73b6cd2da0c1af9aa",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Company at its sole discretion may at any time alter or cease providing the Customer Service which it has agreed to provide to Client relating to Client Website pursuant to this Agreement without any liability to Company.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Company at its sole discretion may at any time alter or cease providing the Customer Service which it has agreed to provide to Client relating to Client Website pursuant to this Agreement without any liability to Company."
+      ]
+    }
+  },
+  {
+    "id": "0366e70abd9e0577a5348cf2",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"This Agreement may be terminated, either in respect of a Fund or in its entirety, by either Oaktree US or the Sub-Advisor for any reason upon 30 days' written notice to the other.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "This Agreement may be terminated, either in respect of a Fund or in its entirety, by either Oaktree US or the Sub-Advisor for any reason upon 30 days' written notice to the other."
+      ]
+    }
+  },
+  {
+    "id": "59aea9f42f4b35bc9e359a00",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "dd2f979bc12b23f981773190",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "8f00812ac9e509f866946071",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"This Agreement will be governed by and construed in accordance with the laws of the State of California, exclusive of conflicts of law principles, and will, to the maximum extent practicable, be deemed to call for performance in Los Angeles County, California.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "This Agreement will be governed by and construed in accordance with the laws of the State of California, exclusive of conflicts of law principles, and will, to the maximum extent practicable, be deemed to call for performance in Los Angeles County, California."
+      ]
+    }
+  },
+  {
+    "id": "dae62565e381aeca960a3377",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"This Agreement shall be interpreted and      governed by the laws of the State of Texas.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "This Agreement shall be interpreted and      governed by the laws of the State of Texas."
+      ]
+    }
+  },
+  {
+    "id": "592b275c952f73c0baeb4134",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"This Agreement shall be governed by         the laws of the State of California, USA, excluding conflict of laws         provisions and excluding the 1980 United Nations Convention on Contracts         for the International Sale of Goods.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "This Agreement shall be governed by         the laws of the State of California, USA, excluding conflict of laws         provisions and excluding the 1980 United Nations Convention on Contracts         for the International Sale of Goods."
+      ]
+    }
+  },
+  {
+    "id": "e8a7c642448b66b6a7419dee",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"This Agreement shall be governed by and           construed in accordance with the laws of the state of Israel, without           giving effect to choice of law rules.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "This Agreement shall be governed by and           construed in accordance with the laws of the state of Israel, without           giving effect to choice of law rules."
+      ]
+    }
+  },
+  {
+    "id": "0d407f4ac3cc754aec3f3895",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "e3529ac4f11719a3137b4465",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "beb17a14d12a8fb5c32f88e9",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "67a81c9f3372ea811a2ea8ec",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"Erchonia may require reasonable minimum purchasing requirements for each run of private labeled products.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "Erchonia may require reasonable minimum purchasing requirements for each run of private labeled products."
+      ]
+    }
+  },
+  {
+    "id": "f1874b9ba081825914b17a2d",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"The \\\"Special Pricing\\\" is contingent on a minimum order size of [***] users.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "The \"Special Pricing\" is contingent on a minimum order size of [***] users."
+      ]
+    }
+  },
+  {
+    "id": "adc4001cc9b28390628f5202",
+    "raw": "{\"status\": \"found\", \"evidence\": [\"YEAR 3 - Annual minimum payment ($250,000), plus a percentage                   increase in the annual minimum payment equal to 50% of the                   difference between the number of emails sent by HSNS on behalf                   of Outsourcing Customers in Year 1 and Year 2, up to a maximum                   Year 3 payment of $500,000.00.\"]}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "found",
+      "evidence": [
+        "YEAR 3 - Annual minimum payment ($250,000), plus a percentage                   increase in the annual minimum payment equal to 50% of the                   difference between the number of emails sent by HSNS on behalf                   of Outsourcing Customers in Year 1 and Year 2, up to a maximum                   Year 3 payment of $500,000.00."
+      ]
+    }
+  },
+  {
+    "id": "163ce76b9335b0a931486807",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  },
+  {
+    "id": "4ad9659839f92e3442572db5",
+    "raw": "{\"status\": \"not_found_in_excerpt\", \"evidence\": []}",
+    "schema_valid": true,
+    "grounded": true,
+    "output": {
+      "status": "not_found_in_excerpt",
+      "evidence": []
+    }
+  }
+]

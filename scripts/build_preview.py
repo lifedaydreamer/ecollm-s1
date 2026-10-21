@@ -8,14 +8,14 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tradepilot.demos import demo_documents
-from tradepilot.engine import extract, review
+from tradepilot.engine import extract, extract_explicit, review
 from tradepilot.parsers import parse_document
 from tradepilot.schema import Policy
 
 
 def snapshots():
     result = {}
-    for variant in ("conflict", "normal", "missing"):
+    for variant in ("conflict", "normal", "missing", "payment"):
         documents = []
         for kind, name, text in demo_documents(variant):
             blocks, warnings = parse_document(name, text.encode())
@@ -30,6 +30,18 @@ def snapshots():
             finding["id"] = hashlib.sha256(finding["key"].encode()).hexdigest()[:16]
         result[variant] = {"synthetic": True, "engine": "rules-only", "policy": policy,
                            "documents": documents, "findings": findings}
+        if variant == "payment":
+            baseline_docs = json.loads(json.dumps(documents))
+            for doc in baseline_docs:
+                doc["warnings"] = []
+                doc["facts"] = extract_explicit(doc)
+                for fact in doc["facts"]:
+                    fact["id"] = f"{doc['id']}:{fact['field']}:{fact['evidence']['block_id']}"
+            before = review(baseline_docs, ["quote"], policy)
+            for finding in before:
+                finding["id"] = hashlib.sha256(finding["key"].encode()).hexdigest()[:16]
+            result[variant]["before"] = {"synthetic": True, "engine": "previous-literal-parser",
+                "policy": policy, "documents": baseline_docs, "findings": before}
     return result
 
 

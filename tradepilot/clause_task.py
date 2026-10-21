@@ -2,6 +2,8 @@
 import json
 import re
 from collections import Counter
+from functools import lru_cache
+from pathlib import Path
 
 CATEGORIES = ("Cap On Liability", "Uncapped Liability", "Liquidated Damages", "Warranty Duration",
               "Insurance", "Audit Rights", "Termination For Convenience", "Governing Law", "Minimum Commitment")
@@ -17,7 +19,12 @@ OUTPUT_SCHEMA = {"type":"object", "properties":{"status":{"type":"string","enum"
                  "required":["status","evidence"],"additionalProperties":False}
 
 
-def messages(record):
+@lru_cache(maxsize=1)
+def category_definitions():
+    return json.loads((Path(__file__).resolve().parents[1] / "configs/cuad-category-definitions.json").read_text())["definitions"]
+
+
+def messages(record, with_definitions=False):
     body = record["input"]
     if not isinstance(body, dict) or set(body) != {"category", "text"}:
         raise ValueError("Clause input requires exactly category and text")
@@ -25,7 +32,10 @@ def messages(record):
         raise ValueError("Clause excerpt must be nonempty text")
     if body["category"] not in CATEGORIES:
         raise ValueError("Unsupported pilot clause category")
-    return [{"role":"system","content":SYSTEM},
+    system = SYSTEM
+    if with_definitions:
+        system += "\nRequested category definition from the original CUAD annotation guidelines:\n" + category_definitions()[body["category"]]
+    return [{"role":"system","content":system},
             {"role":"user","content":json.dumps(body,ensure_ascii=False)}]
 
 

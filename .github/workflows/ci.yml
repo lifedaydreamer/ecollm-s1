@@ -11,6 +11,7 @@ jobs:
       - run: pytest -q
       - run: python scripts/build_preview.py --check
       - run: python scripts/benchmark_agent.py --output .data/agent-regression.json
+      - run: python scripts/benchmark_payment_terms.py --output .data/payment-before-after.json
       - name: Download and verify the actual published clause Adapter without a GPU
         run: |
           python scripts/download_adapter.py --output .data/adapter-check
@@ -19,7 +20,10 @@ jobs:
         if: always()
         with:
           name: agent-engineering-regression
-          path: .data/agent-regression.json
+          include-hidden-files: true
+          path: |
+            .data/agent-regression.json
+            .data/payment-before-after.json
   frontend:
     runs-on: ubuntu-latest
     steps:

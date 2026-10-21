@@ -45,7 +45,7 @@ def main():
     training=[]
     lengths=[]
     for row in rows["train"]:
-        prompt=messages(row)
+        prompt=messages(row, with_definitions=config.get("with_definitions", False))
         prefix=tokenizer.apply_chat_template(prompt,tokenize=True,add_generation_prompt=True,enable_thinking=False)
         full=tokenizer.apply_chat_template(prompt+[{"role":"assistant","content":json.dumps(row["target"],ensure_ascii=False)}],tokenize=True,add_generation_prompt=False,enable_thinking=False)
         if full[:len(prefix)]!=prefix:
@@ -56,7 +56,7 @@ def main():
         training.append({"input_ids":full,"attention_mask":[1]*len(full),"labels":[-100]*len(prefix)+full[len(prefix):]})
     for split in ("validation","test"):
         for row in rows[split]:
-            n=len(tokenizer.apply_chat_template(messages(row),tokenize=True,add_generation_prompt=True,enable_thinking=False))
+            n=len(tokenizer.apply_chat_template(messages(row, with_definitions=config.get("with_definitions", False)),tokenize=True,add_generation_prompt=True,enable_thinking=False))
             if n+config["max_new_tokens"]>config["cutoff_len"]:
                 raise SystemExit("Evaluation context exceeds the frozen token budget")
     metadata={"config":config,"config_sha256":hashlib.sha256(args.config.read_bytes()).hexdigest(),
@@ -76,6 +76,9 @@ def main():
     source_root=Path(__file__).resolve().parents[1]
     metadata["source_sha256"]={name:hashlib.sha256((source_root/name).read_bytes()).hexdigest() for name in
                               ["ml/train_clause_pilot.py","ml/prepare_cuad.py","tradepilot/clause_task.py"]}
+    if config.get("with_definitions") or config.get("eval_batch_size", 1) > 1:
+        for name in ["ml/clause_evaluation.py", "configs/cuad-category-definitions.json"]:
+            metadata["source_sha256"][name] = hashlib.sha256((source_root/name).read_bytes()).hexdigest()
     print(json.dumps({"preflight":"passed","max_train_tokens":max(lengths),"counts":metadata["counts"]}),flush=True)
     if args.prepare_only:
         return
@@ -89,14 +92,22 @@ def main():
     from lmformatenforcer import JsonSchemaParser
     from lmformatenforcer.integrations.transformers import build_transformers_prefix_allowed_tokens_fn
     torch.set_num_threads(2);torch.manual_seed(config["seed"]);random.seed(config["seed"])
-    torch.cuda.set_per_process_memory_fraction(config["memory_fraction"],0)
+    cap = float(os.getenv("TRADEPILOT_MAX_ALLOCATOR_GIB", config.get("memory_limit_gib", 1e9))) * 1024**3
+    fraction = min(config["memory_fraction"], cap / torch.cuda.get_device_properties(0).total_memory)
+    torch.cuda.set_per_process_memory_fraction(fraction,0)
     args.output.mkdir(parents=True,exist_ok=True)
     metadata["versions"]={"torch":torch.__version__,"transformers":transformers.__version__,"peft":peft.__version__}
+    metadata["effective_allocator_limit_gib"] = fraction * torch.cuda.get_device_properties(0).total_memory / 1024**3
     metadata["gpu_uuid"]=os.environ["CUDA_VISIBLE_DEVICES"]
     write(args.output/"experiment.json",metadata)
     model=AutoModelForCausalLM.from_pretrained(str(args.model),dtype=torch.bfloat16,local_files_only=True,trust_remote_code=False,attn_implementation="sdpa").to("cuda:0")
 
     def evaluate(name, dataset, disable_adapter=False):
+        if config.get("eval_batch_size", 1) > 1 or config.get("with_definitions"):
+            from ml.clause_evaluation import evaluate as batched_evaluate
+            return batched_evaluate(model, tokenizer, dataset, args.output, name,
+                batch_size=config.get("eval_batch_size", 1), with_definitions=config.get("with_definitions", False),
+                max_new_tokens=config["max_new_tokens"], disable_adapter=disable_adapter)
         predictions=[];model.eval()
         active=model.disable_adapter() if disable_adapter else nullcontext()
         started=time.monotonic()
@@ -147,11 +158,11 @@ def main():
     gain=tuned["mean_evidence_token_f1"]-base["mean_evidence_token_f1"]
     accepted=(gain>=config["minimum_validation_gain"] and tuned["all_quotes_grounded_rate"]>=base["all_quotes_grounded_rate"]-0.02)
     summary={"validation_evidence_f1_gain":gain,"validation_gate_passed":accepted,"not_a_formal_model_release":True}
-    if accepted:
+    if accepted and not config.get("defer_test", False):
         summary["base_test"]=evaluate("base-test",rows["test"],disable_adapter=True)
         summary["adapter_test"]=evaluate("adapter-test",rows["test"])
     else:
-        summary["test_status"]="kept sealed; validation gate did not pass"
+        summary["test_status"]="kept sealed; validation gate did not pass or suite defers confirmation until selection"
     summary["adapter_sha256"]={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (args.output/"adapter").iterdir() if p.is_file()}
     write(args.output/"summary.json",summary)
     print(json.dumps({"phase":"complete",**summary}),flush=True)

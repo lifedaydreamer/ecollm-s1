@@ -1,0 +1,318 @@
+{
+  "kind": "controlled_synthetic_engineering_cases_not_independent_quality_test",
+  "design": "Explicit numeric payment facts only; includes ranges, alternatives and unrelated percentages; created alongside pattern implementation, not an unbiased model benchmark",
+  "cases": [
+    {
+      "id": "p01",
+      "text": "Payment terms: 30% deposit; balance 70% payable within 60 days after shipment.",
+      "expected": {
+        "deposit_percent": [
+          "30"
+        ],
+        "payment_days": [
+          "60"
+        ],
+        "payment_trigger": [
+          "shipment"
+        ]
+      }
+    },
+    {
+      "id": "p02",
+      "text": "Payment terms: 20% as a deposit, final payment within 45 days after delivery.",
+      "expected": {
+        "deposit_percent": [
+          "20"
+        ],
+        "payment_days": [
+          "45"
+        ],
+        "payment_trigger": [
+          "delivery"
+        ]
+      }
+    },
+    {
+      "id": "p03",
+      "text": "Payment terms: A deposit of 25% is required, balance within 30 calendar days from invoice date.",
+      "expected": {
+        "deposit_percent": [
+          "25"
+        ],
+        "payment_days": [
+          "30"
+        ],
+        "payment_trigger": [
+          "invoice"
+        ]
+      }
+    },
+    {
+      "id": "p04",
+      "text": "Payment terms: prepayment of 40%; remaining amount payable within 15 days following goods receipt.",
+      "expected": {
+        "deposit_percent": [
+          "40"
+        ],
+        "payment_days": [
+          "15"
+        ],
+        "payment_trigger": [
+          "delivery"
+        ]
+      }
+    },
+    {
+      "id": "p05",
+      "text": "Payment terms: 10% in advance, final payment within 90 days after acceptance.",
+      "expected": {
+        "deposit_percent": [
+          "10"
+        ],
+        "payment_days": [
+          "90"
+        ],
+        "payment_trigger": [
+          "acceptance"
+        ]
+      }
+    },
+    {
+      "id": "p06",
+      "text": "Payment terms: advance payment equal to 35%, balance payable within 20 days after shipping.",
+      "expected": {
+        "deposit_percent": [
+          "35"
+        ],
+        "payment_days": [
+          "20"
+        ],
+        "payment_trigger": [
+          "shipment"
+        ]
+      }
+    },
+    {
+      "id": "p07",
+      "text": "Payment terms: 50% prepayment; net 30 days from invoice issuance.",
+      "expected": {
+        "deposit_percent": [
+          "50"
+        ],
+        "payment_days": [
+          "30"
+        ],
+        "payment_trigger": [
+          "invoice"
+        ]
+      }
+    },
+    {
+      "id": "p08",
+      "text": "Payment terms: 15% as an advance payment, balance within 10 days after receipt of the goods.",
+      "expected": {
+        "deposit_percent": [
+          "15"
+        ],
+        "payment_days": [
+          "10"
+        ],
+        "payment_trigger": [
+          "delivery"
+        ]
+      }
+    },
+    {
+      "id": "p09",
+      "text": "Payment terms: deposit of 0%, payment is due within 120 days after delivery.",
+      "expected": {
+        "deposit_percent": [
+          "0"
+        ],
+        "payment_days": [
+          "120"
+        ],
+        "payment_trigger": [
+          "delivery"
+        ]
+      }
+    },
+    {
+      "id": "p10",
+      "text": "Payment terms: 100% deposit, final payment within 0 days after shipment.",
+      "expected": {
+        "deposit_percent": [
+          "100"
+        ],
+        "payment_days": [
+          "0"
+        ],
+        "payment_trigger": [
+          "shipment"
+        ]
+      }
+    },
+    {
+      "id": "p11",
+      "text": "Payment terms: Deposit: 30%; Balance due: 60 days after shipment.",
+      "expected": {
+        "deposit_percent": [
+          "30"
+        ],
+        "payment_days": [
+          "60"
+        ],
+        "payment_trigger": [
+          "shipment"
+        ]
+      }
+    },
+    {
+      "id": "p12",
+      "text": "Deposit: 25% | Payment due: 45 days from invoice date",
+      "expected": {
+        "deposit_percent": [
+          "25"
+        ],
+        "payment_days": [
+          "45"
+        ],
+        "payment_trigger": [
+          "invoice"
+        ]
+      }
+    },
+    {
+      "id": "p13",
+      "text": "Payment terms: 12.5% deposit; remaining 87.5% payable within 35 days following delivery.",
+      "expected": {
+        "deposit_percent": [
+          "12.5"
+        ],
+        "payment_days": [
+          "35"
+        ],
+        "payment_trigger": [
+          "delivery"
+        ]
+      }
+    },
+    {
+      "id": "p14",
+      "text": "Payment terms: a deposit equal to 22%; the balance payable within 25 days after bill of lading date.",
+      "expected": {
+        "deposit_percent": [
+          "22"
+        ],
+        "payment_days": [
+          "25"
+        ],
+        "payment_trigger": [
+          "bill of lading date"
+        ]
+      }
+    },
+    {
+      "id": "p15",
+      "text": "PAYMENT TERMS: 30% DEPOSIT; BALANCE WITHIN 60 DAYS AFTER SHIPMENT.",
+      "expected": {
+        "deposit_percent": [
+          "30"
+        ],
+        "payment_days": [
+          "60"
+        ],
+        "payment_trigger": [
+          "shipment"
+        ]
+      }
+    },
+    {
+      "id": "p16",
+      "text": "Payment terms: 45% as a prepayment, final payment within 50 days from invoice.",
+      "expected": {
+        "deposit_percent": [
+          "45"
+        ],
+        "payment_days": [
+          "50"
+        ],
+        "payment_trigger": [
+          "invoice"
+        ]
+      }
+    },
+    {
+      "id": "n01",
+      "text": "Inspection within 30 days after delivery.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n02",
+      "text": "The discount is 30%; warranty lasts 60 days.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n03",
+      "text": "Payment terms: up to 30% deposit.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n04",
+      "text": "If approved, payment is 30% deposit, otherwise 50% deposit.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n05",
+      "text": "Payment terms: to be agreed.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n06",
+      "text": "Payment terms: net 45 days; triggering event not specified.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n07",
+      "text": "If approved, Deposit: 30%; otherwise Deposit: 50%.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    },
+    {
+      "id": "n08",
+      "text": "The insurance premium is 20%; claims within 30 days after shipment.",
+      "expected": {
+        "deposit_percent": [],
+        "payment_days": [],
+        "payment_trigger": []
+      }
+    }
+  ]
+}

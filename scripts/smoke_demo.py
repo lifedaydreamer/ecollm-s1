@@ -35,7 +35,7 @@ def main():
     request("/")
     health = request("/api/health")
     assert health["model_configured"] is False, "CPU smoke must not call a model endpoint"
-    for variant, differences, risks in [("normal", 0, 0), ("conflict", 3, 2), ("missing", 0, 0)]:
+    for variant, differences, risks in [("normal", 0, 0), ("conflict", 3, 2), ("missing", 0, 0), ("payment", 3, 2)]:
         case = request("/api/demo?variant=" + variant, "POST")
         run = request(f"/api/cases/{case['id']}/runs", "POST", expected=202)
         path = f"/api/cases/{case['id']}/runs/{run['id']}"
@@ -61,7 +61,7 @@ def main():
         assert request(path + "/export/docx").startswith(b"PK")
         assert request(path + "/export/json")["run"]["id"] == run["id"]
         assert request(path + "/export/txt")
-    print("PASS: auth, three cases, rule findings, approval gate, archive and four exports; no GPU/server dependency")
+    print("PASS: auth, four cases, rule findings, approval gate, archive and four exports; no GPU/server dependency")
 
 
 if __name__ == "__main__":

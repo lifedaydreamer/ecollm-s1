@@ -1,0 +1,14 @@
+{
+  "source": "CUAD v1 original annotation questions, CC BY 4.0, The Atticus Project",
+  "definitions": {
+    "Governing Law": "Which state/country's law governs the interpretation of the contract?",
+    "Termination For Convenience": "Can a party terminate this  contract without cause (solely by giving a notice and allowing a waiting  period to expire)?",
+    "Minimum Commitment": "Is there a minimum order size or minimum amount or units per-time period that one party must buy from the counterparty under the contract?",
+    "Audit Rights": "Does a party have the right to  audit the books, records, or physical locations of the counterparty to ensure compliance with the contract?",
+    "Uncapped Liability": "Is a party’s liability uncapped upon the breach of its obligation in the contract? This also includes uncap liability for a particular type of breach such as IP infringement or breach of confidentiality obligation.",
+    "Cap On Liability": "Does the contract include a cap on liability upon the breach of a party’s obligation? This includes time limitation for the counterparty to bring claims or maximum amount for recovery.",
+    "Liquidated Damages": "Does the contract contain a clause that would award either party liquidated damages for breach or a fee upon the termination of a contract (termination fee)?",
+    "Warranty Duration": "What is the duration of any  warranty against defects or errors in technology, products, or services  provided under the contract?",
+    "Insurance": "Is there a requirement for insurance that must be maintained by one party for the benefit of the counterparty?"
+  }
+}

@@ -22,9 +22,7 @@ def family(title):
     return re.sub(r"[^a-z0-9]", "", title.split("_")[0].lower())
 
 
-def prepare(archive, output):
-    if output.exists() and (not output.is_dir() or any(output.iterdir())):
-        raise ValueError("Refuse to overwrite a frozen dataset; choose a new output directory")
+def build_candidates(archive):
     raw = archive.read_bytes()
     if hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest() != SOURCE_BLOB:
         raise ValueError("CUAD source blob changed; inspect a new version before use")
@@ -85,6 +83,13 @@ def prepare(archive, output):
                                       "annotation_id":qa["id"],"license":"CC-BY-4.0","annotation_origin":"upstream_expert_spans_preserved"},
                             "context_hash":digest(" ".join(re.findall(r"\w+",excerpt.lower())))}
                     candidates[split].append(item)
+    return candidates, audit, family_sets, raw
+
+
+def prepare(archive, output):
+    if output.exists() and (not output.is_dir() or any(output.iterdir())):
+        raise ValueError("Refuse to overwrite a frozen dataset; choose a new output directory")
+    candidates, audit, family_sets, raw = build_candidates(archive)
     # Keep official test contracts, but remove exact normalized context overlap from lower-priority groups.
     test_hashes = {r["context_hash"] for r in candidates["test"]}
     validation_hashes = {r["context_hash"] for r in candidates["validation"]}
